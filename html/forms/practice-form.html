@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2.4 Forms</title>
+</head>
+<body>
+<form name="adventure" action="https://httpbin.org/post" method="post">
+  <fieldset>
+    <div>
+      <label>Full name:</label>
+      <input type="text" name="fullname">
+    </div>
+
+    <div>
+      <label>Email:</label>
+      <input type="email" name="email">
+    </div>
+
+    <div>
+      <label>Password:</label>
+      <input type="password" name="password">
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div>
+      <label>Talk about your ideal adventure:</label>
+      <textarea name="ideal_adventure" rows="10" cols="50"></textarea>
+    </div>
+
+    <div>
+      <label>Type of bicycle:</label>
+      <select name="bike">
+        <option value="road">Road</option>
+        <option value="mountain">Mountain</option>
+        <option value="cyclocross">Cyclocross</option>
+      </select>
+    </div>
+
+    <div>    
+      <label>Choose a date:</label>
+      <input type="date" name="date">
+    </div>
+
+    <div>
+      <input type="checkbox" name="cb-agree" value="agree">
+      I am prepared to lead this adventure.
+    </div>
+  </fieldset>
+  
+  <button type="submit">Save this adventure</button>
+</form>
+</body>
+</html>
