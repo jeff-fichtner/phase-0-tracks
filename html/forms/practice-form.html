@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2.4 Form</title>
+</head>
+<body>
+<img src="http://www.discoverhongkong.com/uk/images/see-do/great-outdoors/large/hiking-tips_03.jpg" alt="hong kong hiking" title="Look at that smile!">
+<h1><i>Adventure time!</i></h1>
+<form name="adventure" action="https://httpbin.org/post" method="post">
+  <fieldset>
+    <div>
+      <label>Full name:</label>
+      <input type="text" name="fullname">
+    </div>
+
+    <div>
+      <label>Email:</label>
+      <input type="email" name="email">
+    </div>
+
+    <div>
+      <label>Confirm email:</label>
+      <input type="confirmemail" name="confirmemail">
+    </div>
+  </fieldset>
+
+  <fieldset>
+    
+    <div>
+      <label>Talk about your ideal adventure:</label>
+      <textarea name="ideal_adventure" rows="10" cols="50"></textarea>
+    </div>
+
+    <div>
+      <label>Type of adventure:</label>
+      <select name="type">
+        <option value="hiking">Hiking</option>
+        <option value="sailing">Sailing</option>
+        <option value="tanning">Tanning</option>
+      </select>
+    </div>
+
+    <div>
+      <input type="checkbox" name="cb-agree" value="agree">
+      I agree to follow through on my dreams.
+    </div>
+  </fieldset>
+  
+  <button type="submit">Make this adventure happen!</button>
+</form>
+<img src="https://backroads-web.s3.amazonaws.com/images/search/thumbnail/french-italian-alps-walking-hiking-tour.jpg" alt="french italian alps" title="Ooh, so pretty!!">
+</body>
+</html>
