@@ -1,0 +1,22 @@
+h1 {
+	color: green;
+}
+#octopus {
+	display: inline-block;
+	position: absolute;
+	margin-top: 100px;
+	margin-left: 375px;
+}
+#glasses {
+display: inline-block;
+	position: absolute;
+	margin-top: 200px;
+	margin-left: 416px;
+	z-index: 1;
+}
+#hat {
+	display: inline-block;
+	position: absolute;
+	margin-top: 26px;
+	margin-left: 355px;
+}
