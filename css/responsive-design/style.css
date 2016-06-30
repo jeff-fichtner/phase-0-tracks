@@ -10,7 +10,7 @@ cite {
 }
 
 #external-links {
-  width: 200px;
+  width: 20%;
   display: inline-block;
   vertical-align: top;
 }
@@ -21,7 +21,7 @@ cite {
 }
 
 main {
-  width: 756px;
+  width: 79%;
   display: inline-block;
   vertical-align: top;
 }
@@ -44,5 +44,30 @@ figcaption {
 }
  
 body {
-  width: 960px;
+  max-width: 960px;
+}
+
+/* @media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
+} */
+
+@media screen and (max-width: 768px) {
+  main h1 {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 425px) {
+  #external-links {
+    display: none;
+  }
+  section li {
+    display: inline;
+    padding: 5px;
+  }
+  main {
+    width: 100%;
+    float: left;
+  }
 }
