@@ -9,9 +9,21 @@ cite {
   margin-top: 10px;
 }
 
+#external-links {
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 #external-links ul {
   list-style-type: none;
   padding-left: 0px;
+}
+
+main {
+  width: 79%;
+  display: inline-block;
+  vertical-align: top;
 }
 
 /* you're welcome to edit the
@@ -29,4 +41,33 @@ figure {
 figcaption {
   font-style: italic;
   text-align: right;
+}
+ 
+body {
+  max-width: 960px;
+}
+
+/* @media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
+} */
+
+@media screen and (max-width: 768px) {
+  main h1 {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 425px) {
+  #external-links {
+    display: none;
+  }
+  section li {
+    display: inline;
+    padding: 5px;
+  }
+  main {
+    width: 100%;
+    float: left;
+  }
 }
