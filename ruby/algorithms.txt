@@ -1,0 +1,35 @@
+#Robot Elevator Algorithm
+
+- Approach elevator
+- Until elevator doors are open
+	If elevator is not called
+		- call elevator
+		- wait
+	Else
+		- wait
+- Enter elevator
+- Decide the floor you want to arrive at
+- Find button corresponding to that floor
+- Press button
+- Wait until elevator doors close
+- Wait until elevator moves in the direction of the chosen floor
+If elevator doors open on chosen floor
+	- Exit the elevator
+Else
+	- Wait
+
+End.
+
+***
+
+#How to clean your room
+
+- Observe room
+- Until room is clean
+	If dirty areas exist
+		- clean one dirty area
+		- reobserve room
+	Else
+		- stop cleaning
+
+End.
