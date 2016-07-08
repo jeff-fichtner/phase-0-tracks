@@ -20,4 +20,16 @@ Else
 
 End.
 
-#
+***
+
+#How to clean your room
+
+- Observe room
+- Until room is clean
+	If dirty areas exist
+		- clean one dirty area
+		- reobserve room
+	Else
+		- stop cleaning
+
+End.
