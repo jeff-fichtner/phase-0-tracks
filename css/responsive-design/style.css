@@ -1,3 +1,8 @@
+.container {
+  padding: 1%;
+  margin: 1%;
+}
+
 blockquote {
   border-left: 5px solid blue;
   padding: 15px;
@@ -58,7 +63,7 @@ body {
     text-align: center;
   }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 447px) {
   #external-links {
     display: none;
   }
