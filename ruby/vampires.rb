@@ -15,9 +15,42 @@ insurance = gets.chomp
 #calculate age
 age_year = 2016 - birthyear
 
-#detection
-case object
-when condition
-	
+#boolean conversion methods
+if age_year == age
+	age_is_correct = true
+else
+	age_is_correct = false
 end
-	
+
+if garlic == "yes"
+	likes_garlic = true
+else
+	likes_garlic = false
+end
+
+if insurance == "yes"
+	wants_insurance = true
+else
+	wants_insurance = false
+end
+
+if name == "Drake Cula" || name == "Tu Fang"
+	vampire_name = true
+else
+	vampire_name = false
+end
+
+
+#detection
+puts case
+when age_is_correct && ( likes_garlic || wants_insurance )
+	"Probably not a vampire."
+when !age_is_correct && ( !likes_garlic || !wants_insurance )
+	"Probably a vampire."
+when !age_is_correct && !likes_garlic && !wants_insurance
+	"Almost certainly a vampire."
+when vampire_name
+	"Definitely a vampire."
+else
+	"Results inconclusive."	
+end	
