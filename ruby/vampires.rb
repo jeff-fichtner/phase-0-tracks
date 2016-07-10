@@ -40,17 +40,16 @@ else
 	vampire_name = false
 end
 
-
 #detection
 puts case
-when age_is_correct && ( likes_garlic || wants_insurance )
-	"Probably not a vampire."
-when !age_is_correct && ( !likes_garlic || !wants_insurance )
-	"Probably a vampire."
-when !age_is_correct && !likes_garlic && !wants_insurance
-	"Almost certainly a vampire."
-when vampire_name
-	"Definitely a vampire."
-else
-	"Results inconclusive."	
+	when vampire_name
+		"Definitely a vampire."
+	when !age_is_correct && !likes_garlic && !wants_insurance
+		"Almost certainly a vampire."
+	when !age_is_correct && ( !likes_garlic || !wants_insurance )
+		"Probably a vampire."
+	when age_is_correct && ( likes_garlic || wants_insurance )
+		"Probably not a vampire."
+	else
+		"Results inconclusive."	
 end	
