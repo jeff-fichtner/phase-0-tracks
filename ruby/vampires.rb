@@ -63,3 +63,6 @@ end
 #end loop
 n += 1
 end
+
+#just kidding
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
