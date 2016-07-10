@@ -1,5 +1,11 @@
 #vampire interview
 
+#initiate loop
+puts "How many employees would you like to process?"
+n_employees = gets.chomp.to_i
+n = 0
+while n < n_employees
+
 #data gathering
 puts "What is your name?"
 name = gets.chomp
@@ -52,4 +58,8 @@ puts case
 		"Probably not a vampire."
 	else
 		"Results inconclusive."	
-end	
+end
+
+#end loop
+n += 1
+end
