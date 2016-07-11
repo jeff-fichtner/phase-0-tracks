@@ -1,0 +1,52 @@
+header {
+  background-color: #d9d9d9;
+  border: 1px solid pink;
+  width: 100%;
+  text-align: center;
+}
+.column-1 {
+  background-color: #d9d9d9;
+  border: 1px solid pink;
+  float: left;
+  width: 42%;
+  margin: 2%;
+  padding: 10px;
+}
+.column-2 {
+  background-color: #d9d9d9;
+  border: 1px solid pink;
+  float: right;
+  width: 42%;
+  margin: 2%;
+  padding: 10px;
+}
+footer {
+  clear: both;
+  background-color: #d9d9d9;
+  border: 1px solid pink;
+  width: 100%;
+  padding: 4px;
+}
+h2 {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  color: hotpink;
+}
+a:hover {
+  color: white;
+}
+a:visited {
+  color: hotpink;
+}
+header, footer {
+  background-color: green;
+}
+.column-1 h2 {
+  color: red;
+}
+h2:hover {
+  color: white;
+}
