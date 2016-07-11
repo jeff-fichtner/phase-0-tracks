@@ -23,7 +23,7 @@ def int question
 		reply = gets.chomp.to_i
 
 		if reply > 0
-			break
+			return reply
 		elsif reply <= 0
 			puts "Please answer with an appropriate number."
 		end
@@ -41,8 +41,9 @@ while n < n_employees
 	name = gets.chomp.downcase
 	age = int "How old are you?"
 	birthyear = int "What year were you born?"
-	garlic = ask "Our company cafeteria serves garlic bread. Should we order some for you? (yes/no)"
-	insurance = ask "Would you like to enroll in the company’s health insurance? (yes/no)"
+	puts birthyear
+	likes_garlic = ask "Our company cafeteria serves garlic bread. Should we order some for you? (yes/no)"
+	wants_insurance = ask "Would you like to enroll in the company’s health insurance? (yes/no)"
 
 	#allergy loop
 	puts "Please list any allergies you may have. Type \"done\" when you're finished."
@@ -73,22 +74,19 @@ while n < n_employees
 	end
 
 	#detection
-	if allergy == "sunshine"
-		break
-	else
-		puts case
-			when vampire_name
-				"Definitely a vampire."
-			when !age_is_correct && !likes_garlic && !wants_insurance
-				"Almost certainly a vampire."
-			when !age_is_correct && ( !likes_garlic || !wants_insurance )
-				"Probably a vampire."
-			when age_is_correct && ( likes_garlic || wants_insurance )
-				"Probably not a vampire."
-			else
-				"Results inconclusive."	
-		end
+	puts case
+		when vampire_name
+			"Definitely a vampire."
+		when !age_is_correct && !likes_garlic && !wants_insurance
+			"Almost certainly a vampire."
+		when !age_is_correct && ( !likes_garlic || !wants_insurance )
+			"Probably a vampire."
+		when age_is_correct && ( likes_garlic || wants_insurance )
+			"Probably not a vampire."
+		else
+			"Results inconclusive."	
 	end
+
 
 	#end loop
 	n += 1
