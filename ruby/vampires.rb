@@ -41,7 +41,6 @@ while n < n_employees
 	name = gets.chomp.downcase
 	age = int "How old are you?"
 	birthyear = int "What year were you born?"
-	puts birthyear
 	likes_garlic = ask "Our company cafeteria serves garlic bread. Should we order some for you? (yes/no)"
 	wants_insurance = ask "Would you like to enroll in the company’s health insurance? (yes/no)"
 
