@@ -16,8 +16,11 @@
 def encrypt str
   index = 0
   until index >= str.length
-    if str[index] != " "
+    if str[index] != " " && str[index] != "z"
       x = str[index].next
+      print x
+    elsif str[index] == "z"
+      x = "a"
       print x
     else
       x = str[index]
@@ -27,4 +30,6 @@ def encrypt str
   end
 end
 
-encrypt("abc")
+x = encrypt("zed")
+
+puts x
