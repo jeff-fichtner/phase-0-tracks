@@ -45,7 +45,7 @@ while n < n_employees
 	wants_insurance = ask "Would you like to enroll in the company’s health insurance? (yes/no)"
 
 	#allergy loop
-	puts "Please list any allergies you may have. Type \"done\" when you're finished."
+	puts "Please list any allergies you may have, pressing \"Enter\" in between. Type \"done\" when you're finished."
 	while true
 		allergy = gets.chomp.downcase
 		if allergy == "sunshine"
@@ -72,18 +72,21 @@ while n < n_employees
 		vampire_name = false
 	end
 
-	#detection
-	puts case
-		when vampire_name
-			"Definitely a vampire."
-		when !age_is_correct && !likes_garlic && !wants_insurance
-			"Almost certainly a vampire."
-		when !age_is_correct && ( !likes_garlic || !wants_insurance )
-			"Probably a vampire."
-		when age_is_correct && ( likes_garlic || wants_insurance )
-			"Probably not a vampire."
-		else
-			"Results inconclusive."	
+	if allergy != "sunshine"
+		#detection logic
+		puts case
+			when vampire_name
+				"Definitely a vampire."
+			when !age_is_correct && !likes_garlic && !wants_insurance
+				"Almost certainly a vampire."
+			when !age_is_correct && ( !likes_garlic || !wants_insurance )
+				"Probably a vampire."
+			when age_is_correct && ( likes_garlic || wants_insurance )
+				"Probably not a vampire."
+			else
+				"Results inconclusive."	
+		end
+	else
 	end
 
 
