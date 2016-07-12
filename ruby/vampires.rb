@@ -1,5 +1,6 @@
 #vampire interview
 
+#methods:
 #question method
 def ask question
 	while true
@@ -15,7 +16,6 @@ def ask question
 		end
 	end
 end
-
 #integer question method
 def int question
 	while true
@@ -30,6 +30,8 @@ def int question
 	end
 end
 
+#begin program
+
 #initiate loop
 puts "How many employees would you like to process?"
 n_employees = gets.chomp.to_i
@@ -39,32 +41,7 @@ while n < n_employees
 	#data gathering
 	puts "What is your name?"
 	name = gets.chomp.downcase
-	age = int "How old are you?"
-	birthyear = int "What year were you born?"
-	likes_garlic = ask "Our company cafeteria serves garlic bread. Should we order some for you? (yes/no)"
-	wants_insurance = ask "Would you like to enroll in the company’s health insurance? (yes/no)"
-
-	#allergy loop
-	puts "Please list any allergies you may have, pressing \"Enter\" in between. Type \"done\" when you're finished."
-	while true
-		allergy = gets.chomp.downcase
-		if allergy == "sunshine"
-			puts "Probably a vampire."
-			break
-		elsif allergy == "done"
-			break
-		else
-		end
-	end
-
-	#converting age to bool
-	age_year = 2016 - birthyear
-	if age_year == age
-		age_is_correct = true
-	else
-		age_is_correct = false
-	end
-
+	
 	#converting name to bool
 	if name == "drake cula" || name == "tu fang"
 		vampire_name = true
@@ -72,23 +49,54 @@ while n < n_employees
 		vampire_name = false
 	end
 
-	if allergy != "sunshine"
-		#detection logic
-		puts case
-			when vampire_name
-				"Definitely a vampire."
-			when !age_is_correct && !likes_garlic && !wants_insurance
-				"Almost certainly a vampire."
-			when !age_is_correct && ( !likes_garlic || !wants_insurance )
-				"Probably a vampire."
-			when age_is_correct && ( likes_garlic || wants_insurance )
-				"Probably not a vampire."
-			else
-				"Results inconclusive."	
-		end
+	#name detection bypass
+	if vampire_name
+		puts "Definitely a vampire."
+	
+	#continues with program as normal
 	else
-	end
+		age = int "How old are you?"
+		birthyear = int "What year were you born?"
+		likes_garlic = ask "Our company cafeteria serves garlic bread. Should we order some for you? (yes/no)"
+		wants_insurance = ask "Would you like to enroll in the company’s health insurance? (yes/no)"
 
+
+
+		#allergy loop
+		puts "Please list any allergies you may have, pressing \"Enter\" in between. Type \"done\" when you're finished."
+		while true
+			allergy = gets.chomp.downcase
+			if allergy == "sunshine"
+				puts "Probably a vampire."
+				break
+			elsif allergy == "done"
+				break
+			end
+		end
+
+		#converting age to bool
+		age_year = 2016 - birthyear
+		if age_year == age
+			age_is_correct = true
+		else
+			age_is_correct = false
+		end
+
+		#allergy detection bypass
+		if allergy != "sunshine"
+			#detection logic
+			puts case
+				when !age_is_correct && !likes_garlic && !wants_insurance
+					"Almost certainly a vampire."
+				when !age_is_correct && ( !likes_garlic || !wants_insurance )
+					"Probably a vampire."
+				when age_is_correct && ( likes_garlic || wants_insurance )
+					"Probably not a vampire."
+				else
+					"Results inconclusive."	
+			end
+		end
+	end
 
 	#end loop
 	n += 1
