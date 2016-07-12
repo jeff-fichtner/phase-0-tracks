@@ -1,5 +1,6 @@
 #vampire interview
 
+#methods:
 #question method
 def ask question
 	while true
@@ -15,7 +16,6 @@ def ask question
 		end
 	end
 end
-
 #integer question method
 def int question
 	while true
@@ -29,6 +29,8 @@ def int question
 		end
 	end
 end
+
+#begin program
 
 #initiate loop
 puts "How many employees would you like to process?"
@@ -45,10 +47,13 @@ while n < n_employees
 		vampire_name = true
 	else
 		vampire_name = false
-	end	
+	end
 
+	#name detection bypass
 	if vampire_name
 		puts "Definitely a vampire."
+	
+	#continues with program as normal
 	else
 		age = int "How old are you?"
 		birthyear = int "What year were you born?"
@@ -66,7 +71,6 @@ while n < n_employees
 				break
 			elsif allergy == "done"
 				break
-			else
 			end
 		end
 
@@ -78,6 +82,7 @@ while n < n_employees
 			age_is_correct = false
 		end
 
+		#allergy detection bypass
 		if allergy != "sunshine"
 			#detection logic
 			puts case
@@ -90,7 +95,6 @@ while n < n_employees
 				else
 					"Results inconclusive."	
 			end
-		else
 		end
 	end
 
