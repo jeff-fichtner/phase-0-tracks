@@ -1,7 +1,6 @@
 #secret agent encryption
 
 =begin
-
 encryption (pseudocode)
 
 -define the method (argument)
@@ -17,9 +16,9 @@ encryption (pseudocode)
 	-end loop
 	-return the full return string
 -end method
-
 =end
 
+#The encrypt method returns the next letter in the alphabet for each inputed value in string.
 def encrypt str
   index = 0
   return_str = ""
@@ -39,10 +38,7 @@ def encrypt str
   return return_str
 end
 
-
-
 =begin
-
 decryption (pseudocode)
 
 -define the method (argument)
@@ -60,9 +56,9 @@ decryption (pseudocode)
 	-end the loop
 	-return the full return string
 -end the method
-
 =end
 
+#The decrypt method returns the previous letter in the alphabet for each inputed value in string.
 def decrypt str
   n = 0
   return_str = ""
@@ -77,4 +73,43 @@ def decrypt str
   return return_str
 end
 
-puts decrypt(encrypt("swordfish"))
+#puts decrypt(encrypt("swordfish"))
+
+=begin
+UI (pseudocode)
+
+-asks user if they would like to 'encrypt' or 'decrypt' a password
+	-if answer is valid
+    	-continue
+	-if answer isn't valid
+		-ask again
+-asks for the password
+-if encrypt
+	-call encrypt method
+-else
+	-call decrypt method
+-display results
+=end
+
+#DRIVER CODE
+#ask for encryption or decryption
+puts "Would you like to encrypt or decrypt a password?"
+while true
+  reply = gets.chomp.downcase
+    if reply == "decrypt" || reply == "encrypt"
+      break
+    else
+      puts "Please respond with either \"encrypt\" or \"decrypt\"."
+    end
+end
+#ask for password
+puts "What is the password?"
+password = gets.chomp
+#call the method
+if reply == "encrypt"
+  result = encrypt(password)
+else reply == "decrypt"
+  result = decrypt(password)
+end
+#display results
+puts "The result is: #{result}."
