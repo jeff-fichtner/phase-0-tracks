@@ -38,3 +38,57 @@ end
 
 p desserts
 
+#release 2
+
+#1
+
+puts meals.reject {|meal, food| food < "g"}
+puts meals
+
+puts desserts.reject { |food| food < "g" }
+puts desserts
+
+#destructive
+
+#puts meals.reject! {|meal, food| food < "g"}
+#puts meals
+
+#puts desserts.reject! { |food| food < "g" }
+#puts desserts
+
+
+#2
+
+puts meals.select {|meal, food| food < "g"}
+puts meals
+
+puts desserts.select { |food| food < "g" }
+puts desserts
+
+#destructive
+
+#puts meals.select! {|meal, food| food < "g"}
+#puts meals
+
+#puts desserts.select! { |food| food < "g" }
+#puts desserts
+
+#3
+#destructive
+
+#puts meals.keep_if {|meal, food| food < "g"}
+#puts meals
+
+#puts desserts.delete_if { |food| food < "g" }
+#puts desserts
+
+#4
+
+#returns two-item arrays, non-destructive
+p meals.drop_while {|meal, food| food < "g"}
+puts meals
+
+puts desserts.drop_while { |food| food > "g" }
+puts desserts
+
+
