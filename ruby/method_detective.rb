@@ -4,36 +4,42 @@
 # When there's more than one suspect who could have
 # committed the crime, add additional calls to prove it.
 
-# "iNvEsTiGaTiOn".<???>
-# => “InVeStIgAtIoN”
+a = "iNvEsTiGaTiOn".swapcase
+puts a == "InVeStIgAtIoN"
+# or .swapcase!
 
-# "zom".<???>
-# => “zoom”
+b = "zom".insert(1, 'o')
+puts b == "zoom"
 
-# "enhance".<???>
-# => "    enhance    "
+c = "enhance".center(15)
+puts c == "    enhance    "
 
-# "Stop! You’re under arrest!".<???>
-# => "STOP! YOU’RE UNDER ARREST!"
+d = "Stop! You’re under arrest!".upcase
+puts d == "STOP! YOU’RE UNDER ARREST!"
+# or .upcase!
 
-# "the usual".<???>
-#=> "the usual suspects"
+e = "the usual".insert(-1, ' suspects')
+puts e == "the usual suspects"
+# or .replace
 
-# " suspects".<???>
-# => "the usual suspects"
+f = " suspects".prepend("the usual")
+puts f == "the usual suspects"
+# or .insert, .replace
 
-# "The case of the disappearing last letter".<???>
-# => "The case of the disappearing last lette"
+g = "The case of the disappearing last letter".chop
+puts g == "The case of the disappearing last lette"
+# or .chop!
 
-# "The mystery of the missing first letter".<???>
-# => "he mystery of the missing first letter"
+h = "The mystery of the missing first letter"[1..-1]
+puts h == "he mystery of the missing first letter"
 
-# "Elementary,    my   dear        Watson!".<???>
-# => "Elementary, my dear Watson!"
+i = "Elementary,    my   dear        Watson!".squeeze(" ") 
+puts i == "Elementary, my dear Watson!"
+# or .squeeze!
 
-# "z".<???>
-# => 122 
-# (What is the significance of the number 122 in relation to the character z?)
+j = "z".bytes.join.to_i
+puts j == 122
+# or .each_byte {|fixnum| block}
 
-# "How many times does the letter 'a' appear in this string?".<???>
-# => 4
+k = "How many times does the letter 'a' appear in this string?".count "a"
+puts k == 4
