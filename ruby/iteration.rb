@@ -13,7 +13,8 @@ food { |food1, food2, food3| puts "I want some #{food1} and #{food2} but only if
 meals = {
   breakfast: "eggs",
   lunch: "sandwich",
-  dinner: "pizza"
+  dinner: "pizza",
+  dessert: "pie"
   }
 
 desserts = ["ice cream", "candy", "cake"]
