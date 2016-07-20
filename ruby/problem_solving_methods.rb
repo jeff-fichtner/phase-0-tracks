@@ -35,6 +35,16 @@ end
 
 #release 2
 
+#start with index 1
+#compare index with index-1
+#if greater than
+  #swap
+  #move left to next sorted number
+#otherwise
+  #stop
+  #move on to next index of unsorted numbers (right)
+#when index reaches array length, end program/display array
+
 def insertion(arr)
   i = 1
   while i < arr.length
