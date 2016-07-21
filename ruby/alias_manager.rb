@@ -52,11 +52,6 @@ def rejoin_chars array
 	array.map! {|subarr| subarr.join.capitalize}
 end
 
-# add to hash
-def store_name key, value
-	alias_names[key] = value
-end
-
 # swapping vowels
 def vowel str
 	alpha = "aeiou"
@@ -96,8 +91,7 @@ loop do
 		puts "What is the agent's full name?"
 		agent_name = gets.chomp
 		name_arr = agent_name.downcase.split(' ')
-		name_arr = switch name_arr
-		name_arr = split_chars name_arr
+		name_arr = split_chars(switch name_arr)
 		# scramble it
 		name_arr = rejoin_chars name_arr
 		alias_names[agent_name] = name_arr.join(' ')
