@@ -29,6 +29,8 @@ main menu - 1/add name, 2/see all names, 3/quit
 	print data
 3
 	end program
+else
+	invalid input, try again
 
 =end
 
