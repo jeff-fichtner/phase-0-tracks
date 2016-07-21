@@ -1,3 +1,33 @@
+# methods
+
+def int question
+	while true
+		puts question
+		reply = gets.chomp.to_i
+
+		if reply > 0
+			return reply
+		elsif reply <= 0
+			puts "Please answer with an appropriate number."
+		end
+	end
+end
+
+def ask question
+	while true
+		puts question
+		reply = gets.chomp.downcase
+
+		if reply == "yes"
+			return true
+		elsif reply == "no"
+			return false
+		else
+			puts "Please answer with \"yes\" or \"no\"."
+		end
+	end
+end
+
 # application hash
 
 client = {
@@ -5,63 +35,52 @@ client = {
 
 # driver code
 
-puts
 puts "Welcome to the client form."
-puts
 
 puts "What is the client's name?"
+name = gets.chomp
+
 puts "What is the client's address?"
-#more q's
+address = gets.chomp
+
+number = int "What is the client's phone number?"
+
+modern = ask "Does the client like modern design? (yes/no)"
+
+vintage = ask "Does the client like vintage design? (yes/no)"
+
+puts "You have completed the form."
 
 loop do
-	puts "To add a value, type \"1\". To update a value, type \"2\". To update a key, type \"3\". To see the hash, type \"4\". To quit, type \"q\"."
-	puts
+	puts "To add a value, type \"1\". To update a value, type \"2\". To update a key, type \"3\". To see the entire hash, type \"4\". To quit, type \"q\"."
 	input = gets.chomp
 	if input == "q"
 		break
 	elsif input == "1"
-		puts
 		puts "What is the name of the key?"
-		puts
 		key = gets.chomp.to_sym
-		puts
 		puts "What is the value?"
-		puts
 		value = gets.chomp
 		client[key] = value
-		puts
 		puts "You have added \"#{key}\" to be \"#{client[key]}\"."
-		puts
 	elsif input == "2"
-		puts
 		puts client.keys
-		puts
 		puts "Which key would you like to update?"
-		puts
 		loop do
 			key = gets.chomp.to_sym
 			if !client.key?(key)
-				puts
 				puts "Please enter a valid key."
-				puts
 			else
-				puts
 				puts "What is the new value?"
-				puts
 				new_value = gets.chomp
 				client[key] = new_value
-				puts
 				puts "You have modified the \"#{key}\" key to be \"#{client[key]}\"."
-				puts
 				break
 			end
 		end
 	elsif input == "3"
 		#insert update key
 	elsif input == "4"
-		puts
 		puts client
-		puts
 	end
 end
-puts
