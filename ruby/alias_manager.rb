@@ -7,7 +7,6 @@ Pseudocode:
 main menu - 1/add name, 2/see all names, 3/quit
 
 1
-	initiate name array
 	ask for name (downcase)
 	add each name to array
 	switch items
@@ -33,10 +32,15 @@ main menu - 1/add name, 2/see all names, 3/quit
 
 =end
 
-# initiate empty data array
-alias_names = []
+# initiate empty data hash
+alias_names = {}
 
 # methods
+
+# switch name
+def switch array
+	array[0], array[1] = array[1], array[0]
+end
 
 # split names into character arrays
 def split_names array
@@ -48,19 +52,9 @@ def rejoin_chars array
 	array.map! {|subarr| subarr.join}
 end
 
-# empty the array
-def empty_array array
-	array.clear
-end
-
 # add to hash
 def store_name key, value
 	alias_names[key] = value
-end
-
-# switch name
-def switch array
-	array[0], array[1] = array[1], array[0]
 end
 
 # swapping vowels
@@ -92,15 +86,16 @@ end
 
 loop do
 	puts "To add a name to the database, type \"1\". To see all names, type \"2\". To end the program, type \"q\"."
-	input == gets.chomp
-	if input != q || input != "1" || input != "2"
-		puts "Please enter a valid input."
-	elsif input == "1"
-		name = []
-		puts "What is the agent's name?"
+	input = gets.chomp
+	if input == "1"
+		puts "What is the agent's full name?"
 		agent_name = gets.chomp.downcase
+		name_arr = agent_name.split(' ')
+		new_arr = switch name_arr
 		# scramble it
 		# store in data hash
+		#print result
+		#ask if enter another name
 	elsif input == "2"
 		alias_names.each {|key, value| puts "Agent #{key}'s alias is \"#{value}\"."}
 	elsif input == "q"
