@@ -35,22 +35,20 @@ client = {
 
 # driver code
 
+# fills out form
 puts "Welcome to the client form."
 
 puts "What is the client's name?"
-name = gets.chomp
-
+client[:name] = gets.chomp
 puts "What is the client's address?"
-address = gets.chomp
-
-number = int "What is the client's phone number?"
-
-modern = ask "Does the client like modern design? (yes/no)"
-
-vintage = ask "Does the client like vintage design? (yes/no)"
+client[:address] = gets.chomp
+client[:number] = int "What is the client's phone number?"
+client[:modern] = ask "Does the client like modern design? (yes/no)"
+client[:vintage] = ask "Does the client like vintage design? (yes/no)"
 
 puts "You have completed the form."
 
+# begins edit loop
 loop do
 	puts "To add a value, type \"1\". To update a value, type \"2\". To update a key, type \"3\". To see the entire hash, type \"4\". To quit, type \"q\"."
 	input = gets.chomp
