@@ -33,6 +33,26 @@ alias_names = {}
 
 # methods
 
+# split names into character arrays
+def split_names array
+	array.map! {|name| name.chars}
+end
+
+# rejoin characters into names
+def rejoin_chars array
+	array.map! {|subarr| subarr.join}
+end
+
+# empty the array
+def empty_array array
+	array.clear
+end
+
+# add to hash
+def store_name key, value
+	alias_names[key] = value
+end
+
 # switch name
 def switch array
 	array[0], array[1] = array[1], array[0]
@@ -61,8 +81,6 @@ def consonant str
 	    return alpha[new_index]
 	end
 end
-
-
 
 # driver code
 
