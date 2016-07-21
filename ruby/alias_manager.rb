@@ -4,32 +4,37 @@
 
 Pseudocode:
 
-ask for name (downcase)
-add each name to array
-switch items
-for each item:
-split into characters
-if vowel
-	aeiou
-	change to next index in string
-	edge case
-elsif consonant
-	bcdfghjklmnpqrestvwxyz
-	change to next index in string
-	edge case
-rejoin
-capitalize
-store in data structure
-clear the array
-print data
+main menu - 1/add name, 2/see all names, 3/quit
+
+1
+	initiate name array
+	ask for name (downcase)
+	add each name to array
+	switch items
+	split into character arrays
+	change characters:
+		if vowel
+			aeiou
+			change to next index in string
+			edge case
+		elsif consonant
+			bcdfghjklmnpqrestvwxyz
+			change to next index in string
+			edge case
+	rejoin
+	capitalize
+	store in data structure
+	print the name
+	clear the array
+2
+	print data
+3
+	end program
 
 =end
 
-# initiate empty array
-name = []
-
-# initiate empty data hash
-alias_names = {}
+# initiate empty data array
+alias_names = []
 
 # methods
 
@@ -82,6 +87,23 @@ def consonant str
 	end
 end
 
+
 # driver code
 
-# print data
+loop do
+	puts "To add a name to the database, type \"1\". To see all names, type \"2\". To end the program, type \"q\"."
+	input == gets.chomp
+	if input != q || input != "1" || input != "2"
+		puts "Please enter a valid input."
+	elsif input == "1"
+		name = []
+		puts "What is the agent's name?"
+		agent_name = gets.chomp.downcase
+		# scramble it
+		# store in data hash
+	elsif input == "2"
+		alias_names.each {|key, value| puts "Agent #{key}'s alias is \"#{value}\"."}
+	elsif input == "q"
+		break
+	end
+end
