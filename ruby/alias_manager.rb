@@ -104,5 +104,9 @@ loop do
 		puts menu
 	elsif input == "q"
 		break
+	else
+		puts "Please enter a valid input."
+		puts
+		puts menu
 	end
 end
