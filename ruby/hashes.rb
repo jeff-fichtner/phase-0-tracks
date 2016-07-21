@@ -42,7 +42,7 @@ puts "What is the client's name?"
 client[:name] = gets.chomp
 puts "What is the client's address?"
 client[:address] = gets.chomp
-client[:number] = int "What is the client's phone number?"
+client[:number] = int "What is the client's phone number? (Only enter numbers)"
 client[:modern] = ask "Does the client like modern design? (yes/no)"
 client[:vintage] = ask "Does the client like vintage design? (yes/no)"
 
@@ -50,7 +50,7 @@ puts "You have completed the form."
 
 # begins edit loop
 loop do
-	puts "To add a value, type \"1\". To update a value, type \"2\". To update a key, type \"3\". To see the entire hash, type \"4\". To quit, type \"q\"."
+	puts "To add a value, type \"1\". To update a value, type \"2\". To update a key, type \"3\". To delete a key, type \"4\". To see the entire hash, type \"5\". To quit, type \"q\"."
 	input = gets.chomp
 	if input == "q"
 		break
@@ -77,8 +77,35 @@ loop do
 			end
 		end
 	elsif input == "3"
-		#insert update key
+		puts client.keys
+		puts "Which key would you like to change?"
+		loop do
+			key = gets.chomp.to_sym
+			if !client.key?(key)
+				puts "Please enter a valid key."
+			else
+				puts "What is the new key?"
+				new_key = gets.chomp.to_sym
+				client[new_key] = client.delete key
+				puts "You have modified the \"#{key}\" key to be \"#{new_key}\"."
+				break
+			end
+		end
 	elsif input == "4"
+		puts client.keys
+		puts "Which key would you like to delete?"
+		loop do
+			key = gets.chomp.to_sym
+			if !client.key?(key)
+				puts "Please enter a valid key."
+			else
+				#here's where the problem is
+				#client.delete[key]
+				puts "You have deleted the \"#{key}\" key."
+				break
+			end
+		end
+	elsif input == "5"
 		puts client
 	end
 end
