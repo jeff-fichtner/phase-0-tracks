@@ -62,7 +62,8 @@ loop do
 		client[key] = value
 		puts "You have added \"#{key}\" to be \"#{client[key]}\"."
 	elsif input == "2"
-		puts client.keys
+		puts client
+		print client.keys
 		puts "Which key would you like to update?"
 		loop do
 			key = gets.chomp.to_sym
@@ -109,3 +110,40 @@ loop do
 		puts client
 	end
 end
+
+=begin
+
+Pseudocode:
+
+-create the hash
+
+-ask questions/store key-values
+
+6 loop options: q - quit, 1 - add value, 2 - update value, 3 - update key, 4 - delete key-value, 5 - display hash
+
+q:
+	if q - break
+1:
+	ask for key name (convert to symbol)
+	ask for value
+	stores key - value
+2:
+	display hash, keys
+	ask for key
+	ask for new value
+	store new value
+3:
+	display keys
+	ask for key
+	ask for new key
+	delete old key, store new key
+4:
+	display keys
+	ask for key
+	delete key
+5:
+	display hash
+
+end loop
+	
+=end
