@@ -28,16 +28,24 @@ print data
 
 def vowel str
 	alpha = "aeiou"
-	index = alpha.index(str)
-	new_index = index + 1
-    alpha[new_index]
+	if str == 'u'
+		return 'a'
+	else
+		index = alpha.index(str)
+		new_index = index + 1
+    	return alpha[new_index]
+    end
 end
 
 def consonant str
 	alpha = "bcdfghjklmnpqrestvwxyz"
-	index = alpha.index(str)
-	new_index = index + 1
-    alpha[new_index]
+	if str == 'z'
+		return 'b'
+	else
+		index = alpha.index(str)
+		new_index = index + 1
+	    return alpha[new_index]
+	end
 end
 
 # driver code
@@ -46,5 +54,5 @@ end
 
 # test
 
-p consonant 'x'
-p vowel 'a'
+p consonant 'z'
+p vowel 'u'
