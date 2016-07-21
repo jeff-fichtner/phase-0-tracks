@@ -5,7 +5,7 @@
 Pseudocode:
 
 ask for name (downcase)
-split into two object array
+add each name to array
 switch items
 for each item:
 split into characters
@@ -20,12 +20,25 @@ elsif consonant
 rejoin
 capitalize
 store in data structure
+clear the array
 print data
 
 =end
 
-# algorithm
+# initiate empty array
+name = []
 
+# initiate empty data hash
+alias_names = {}
+
+# methods
+
+# switch name
+def switch array
+	array[0], array[1] = array[1], array[0]
+end
+
+# swapping vowels
 def vowel str
 	alpha = "aeiou"
 	if str == 'u'
@@ -37,6 +50,7 @@ def vowel str
     end
 end
 
+# swapping consonants
 def consonant str
 	alpha = "bcdfghjklmnpqrestvwxyz"
 	if str == 'z'
@@ -48,11 +62,8 @@ def consonant str
 	end
 end
 
+
+
 # driver code
 
 # print data
-
-# test
-
-p consonant 'z'
-p vowel 'u'
