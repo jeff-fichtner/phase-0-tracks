@@ -55,26 +55,42 @@ def rejoin_chars array
 end
 
 # swapping vowels
-def vowel str
+def vowel char
 	alpha = "aeiou"
-	if str == 'u'
+	if char == 'u'
 		return 'a'
 	else
-		index = alpha.index(str)
+		index = alpha.index(char)
 		new_index = index + 1
     	return alpha[new_index]
     end
 end
 
 # swapping consonants
-def consonant str
+def consonant char
 	alpha = "bcdfghjklmnpqrestvwxyz"
-	if str == 'z'
+	if char == 'z'
 		return 'b'
 	else
-		index = alpha.index(str)
+		index = alpha.index(char)
 		new_index = index + 1
 	    return alpha[new_index]
+	end
+end
+
+# vowel sorting
+def if_vowel char
+	#deduce if character is vowel
+	if vowel
+		return vowel(char)
+	end
+end
+
+# consonant sorting
+def if_consonant char
+	#deduce if character is consonant
+	if consonant
+		return consonant(char)
 	end
 end
 
@@ -94,7 +110,8 @@ loop do
 		agent_name = gets.chomp
 		name_arr = agent_name.downcase.split(' ')
 		name_arr = split_chars(switch name_arr)
-		# scramble it
+		#run vowel sort
+		#run consonant sort
 		name_arr = rejoin_chars name_arr
 		alias_names[agent_name] = name_arr.join(' ')
 		puts "Agent #{agent_name}'s alias is \"#{alias_names[agent_name]}\"."
