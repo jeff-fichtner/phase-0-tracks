@@ -43,13 +43,13 @@ def switch array
 end
 
 # split names into character arrays
-def split_names array
+def split_chars array
 	array.map! {|name| name.chars}
 end
 
-# rejoin characters into names
+# rejoin characters into names, capitalizes
 def rejoin_chars array
-	array.map! {|subarr| subarr.join}
+	array.map! {|subarr| subarr.join.capitalize}
 end
 
 # add to hash
@@ -81,23 +81,33 @@ def consonant str
 	end
 end
 
+menu = "To add a name to the database, type \"1\". To see all names, type \"2\". To end the program, type \"q\"."
+repeat_menu = "To add another name to the database, type \"1\". To see all names, type \"2\". To end the program, type \"q\"."
 
 # driver code
 
+puts
+puts "Welcome to the Alias Database."
+puts
+puts menu
 loop do
-	puts "To add a name to the database, type \"1\". To see all names, type \"2\". To end the program, type \"q\"."
 	input = gets.chomp
 	if input == "1"
 		puts "What is the agent's full name?"
-		agent_name = gets.chomp.downcase
-		name_arr = agent_name.split(' ')
-		new_arr = switch name_arr
+		agent_name = gets.chomp
+		name_arr = agent_name.downcase.split(' ')
+		name_arr = switch name_arr
+		name_arr = split_chars name_arr
 		# scramble it
-		# store in data hash
-		#print result
-		#ask if enter another name
+		name_arr = rejoin_chars name_arr
+		alias_names[agent_name] = name_arr.join(' ')
+		puts "Agent #{agent_name}'s alias is \"#{alias_names[agent_name]}\"."
+		puts repeat_menu
 	elsif input == "2"
+		puts
 		alias_names.each {|key, value| puts "Agent #{key}'s alias is \"#{value}\"."}
+		puts
+		puts menu
 	elsif input == "q"
 		break
 	end
