@@ -26,6 +26,25 @@ print data
 
 # algorithm
 
+def vowel str
+	alpha = "aeiou"
+	index = alpha.index(str)
+	new_index = index + 1
+    alpha[new_index]
+end
+
+def consonant str
+	alpha = "bcdfghjklmnpqrestvwxyz"
+	index = alpha.index(str)
+	new_index = index + 1
+    alpha[new_index]
+end
+
 # driver code
 
 # print data
+
+# test
+
+p consonant 'x'
+p vowel 'a'
