@@ -9,7 +9,9 @@ puts
 puts "Welcome to the client form."
 puts
 
-#insert form here
+puts "What is the client's name?"
+puts "What is the client's address?"
+#more q's
 
 loop do
 	puts "To add a value, type \"1\". To update a value, type \"2\". To update a key, type \"3\". To see the hash, type \"4\". To quit, type \"q\"."
