@@ -68,7 +68,7 @@ end
 
 # swapping consonants
 def consonant char
-	consonants = 'bcdfghjklmnpqrestvwxyz'
+	consonants = 'bcdfghjklmnpqrstvwxyz'
 	if char == 'z'
 		return 'b'
 	else
@@ -81,16 +81,20 @@ end
 # vowel sorting
 def if_vowel char
 	vowels = 'aeiou'
-	if vowels.include? char
+	if vowels.include?(char)
 		return vowel(char)
+	else
+		return char
 	end
 end
 
 # consonant sorting
 def if_consonant char
-	consonants = 'bcdfghjklmnpqrestvwxyz'
-	if consonants.include? char
+	consonants = 'bcdfghjklmnpqrstvwxyz'
+	if consonants.include?(char)
 		return consonant(char)
+	else
+		return char
 	end
 end
 
@@ -110,8 +114,10 @@ loop do
 		agent_name = gets.chomp
 		name_arr = agent_name.downcase.split(' ')
 		name_arr = split_chars(switch name_arr)
-		#run vowel sort
-		#run consonant sort
+		name_arr[0].map! {|char| if_vowel(char)}
+		name_arr[0].map! {|char| if_consonant(char)}
+		name_arr[1].map! {|char| if_vowel(char)}
+		name_arr[1].map! {|char| if_consonant(char)}
 		name_arr = rejoin_chars name_arr
 		alias_names[agent_name] = name_arr.join(' ')
 		puts "Agent #{agent_name}'s alias is \"#{alias_names[agent_name]}\"."
