@@ -99,9 +99,8 @@ loop do
 			key = gets.chomp.to_sym
 			if !client.key?(key)
 				puts "Please enter a valid key."
-			else
-				#here's where the problem is
-				#client.delete[key]
+			else 
+				client.delete(key)
 				puts "You have deleted the \"#{key}\" key."
 				break
 			end
