@@ -10,7 +10,7 @@ main menu - 1/add name, 2/see all names, 3/quit
 	ask for name (downcase)
 	add each name to array
 	switch items
-	split into character arrays
+	split into array of character arrays
 	change characters:
 		if vowel
 			aeiou
@@ -24,7 +24,6 @@ main menu - 1/add name, 2/see all names, 3/quit
 	capitalize
 	store in data structure
 	print the name
-	clear the array
 2
 	print data
 3
