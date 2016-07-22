@@ -109,9 +109,11 @@ puts menu
 loop do
 	input = gets.chomp
 	if input == "1"
-		puts "What is the agent's full name?"
-		agent_name = gets.chomp
-		# add loop to ensure there are two names (bug)
+		puts "What is the agent's first name?"
+		agent_name_first = gets.chomp
+		puts "What is the agent's last name?"
+		agent_name_last = gets.chomp
+		agent_name = agent_name_first + ' ' + agent_name_last
 		name_arr = agent_name.downcase.split(' ')
 		name_arr = split_chars(switch name_arr)
 		# DRY these 4 lines
