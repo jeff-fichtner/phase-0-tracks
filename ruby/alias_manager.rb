@@ -112,8 +112,10 @@ loop do
 	if input == "1"
 		puts "What is the agent's full name?"
 		agent_name = gets.chomp
+		# add loop to ensure there are two names (bug)
 		name_arr = agent_name.downcase.split(' ')
 		name_arr = split_chars(switch name_arr)
+		# DRY these 4 lines
 		name_arr[0].map! {|char| if_vowel(char)}
 		name_arr[0].map! {|char| if_consonant(char)}
 		name_arr[1].map! {|char| if_vowel(char)}
