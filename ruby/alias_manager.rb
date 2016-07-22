@@ -56,40 +56,40 @@ end
 
 # swapping vowels
 def vowel char
-	alpha = "aeiou"
+	vowels = 'aeiou'
 	if char == 'u'
 		return 'a'
 	else
-		index = alpha.index(char)
+		index = vowels.index(char)
 		new_index = index + 1
-    	return alpha[new_index]
+    	return vowels[new_index]
     end
 end
 
 # swapping consonants
 def consonant char
-	alpha = "bcdfghjklmnpqrestvwxyz"
+	consonants = 'bcdfghjklmnpqrestvwxyz'
 	if char == 'z'
 		return 'b'
 	else
-		index = alpha.index(char)
+		index = consonants.index(char)
 		new_index = index + 1
-	    return alpha[new_index]
+	    return consonants[new_index]
 	end
 end
 
 # vowel sorting
 def if_vowel char
-	#deduce if character is vowel
-	if vowel
+	vowels = 'aeiou'
+	if vowels.include? char
 		return vowel(char)
 	end
 end
 
 # consonant sorting
 def if_consonant char
-	#deduce if character is consonant
-	if consonant
+	consonants = 'bcdfghjklmnpqrestvwxyz'
+	if consonants.include? char
 		return consonant(char)
 	end
 end
