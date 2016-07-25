@@ -29,17 +29,21 @@ class Santa
 	end
 end
 
+=begin
 st_nick = Santa.new("intersex", "mixed")
 st_nick.speak
 st_nick.eat_milk_and_cookies('chocolate chip')
+=end
 
 santas = []
 example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
 example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
-example_genders.length.times do |i|
+100.times do |i|
 	santas << Santa.new(example_genders[i], example_ethnicities[i])
+	p santas
 end
 
+=begin
 santas << Santa.new("male", "Colombian")
 santas << Santa.new("female", "alien")
 
@@ -59,3 +63,4 @@ p santas[3].reindeer_ranking
 p santas[1].gender
 santas[1].gender = "not sure"
 p santas[1].gender
+=end
