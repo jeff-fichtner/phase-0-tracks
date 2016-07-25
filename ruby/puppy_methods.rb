@@ -17,7 +17,6 @@
 # Dig 
 
 class Puppy
-
   def initialize
     puts "Initializing new puppy instance ..."
   end
@@ -43,6 +42,29 @@ class Puppy
   end
 end
 
+class Kitty
+  attr_reader :name
+  
+  def initialize(name)
+    puts "Initializing new kitty instance..."
+    @name = name
+  end
+  
+  def speak(reason)
+    if reason == "intruder"
+      p "*Hisses*"
+    elsif reason == "mom"
+      p "*Purrs*"
+    else
+      p "*Cries*"
+    end
+  end
+
+  def hide(spot)
+    p "#{@name} hides in the #{spot}."
+  end
+end
+
 
 # Driver Code
 ramen = Puppy.new
@@ -58,3 +80,20 @@ ramen.roll_over
 puts "Dubu is #{dubu.dog_years(4)} dog years old."
 
 dubu.begs(2, "grapes")
+
+marcello = Kitty.new("Marcello")
+mimi = Kitty.new("Mimi")
+
+mimi.hide("closet")
+marcello.speak("mom")
+mimi.speak("mailman")
+marcello.speak("intruder")
+
+kitty_array = []
+i = 0
+until i == 50
+  kitty_array << Kitty.new("kitty")
+  i += 1
+end
+
+kitty_array.each {|x| puts x.name}
