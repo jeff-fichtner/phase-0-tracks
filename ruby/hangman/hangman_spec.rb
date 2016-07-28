@@ -20,18 +20,18 @@ describe Hangman do
   end
 
   it "verifies a winning solution" do
-    expect(hangman.verify_win(['h','a','n','g','m','a','_'])).to eq false
+    expect(hangman.verify_win(['h','a','n','g','m','a','_'])).to eq nil
   end
 
   it "adds to game count" do
-    expect(hangman.add_guess_count(true)).to eq 0
+    expect(hangman.add_guess_count('h')).to eq 0
   end
 
   it "adds to game count" do
-    expect(hangman.add_guess_count(false)).to eq 1
+    expect(hangman.add_guess_count('x')).to eq 1
   end
 
   it "verifies game count" do
-    expect(hangman.verify_game_count(7,1)).to eq 6
+    expect(hangman.verify_game_count(7)).to eq true
   end
 end

@@ -1,8 +1,12 @@
 class Hangman
-	attr_reader :solution, :game_array
+	attr_reader :solution_array, :game_result, :game_valid
+	attr_accessor :game_array, :counter
 
 	def initialize solution
 		@solution_array = solution.downcase.split('')
+		@game_result = false
+		@game_valid = true
+		@counter = 0
 		@game_array = Array.new
 		@solution_array.each { |x| @game_array << '_' }
 	end
@@ -20,24 +24,69 @@ class Hangman
 		end
 	end
 
-	def verify_win game_array
+	def verify_win
+		if @solution_array == @game_array
+			@game_result = true
+		end
 	end
 
 	def add_guess_count guess
+		if @solution_array.index(guess) == nil
+			@counter += 1
+		else
+			@counter
+		end
 	end
 
 	def verify_game_count
+		if @counter == @solution_array.length
+			@game_valid = false
+		end
 	end
 
-	def finish_game result
+	def finish_game
+		if @game_result
+			puts "Congratulations on winning the game!"
+			puts "The final solution was #{@solution_array.join}."
+		else
+			puts "Sucks to lose."
+			puts "The correct solution was #{@solution_array.join}."
+			puts "Better luck next time."
+		end
 	end
 end
 
-hangman = Hangman.new("hangman")
-p hangman.game_array.join
-hangman.verify_guess('h')
-p hangman.game_array.join
+# hangman = Hangman.new("hangman")
+# p hangman.game_array.join
+# hangman.verify_guess('h')
+# p hangman.game_array.join
+# hangman.verify_guess('x')
+# p hangman.game_array.join
+# hangman.game_array = ['h','a','n','g','m','a','_']
+# p hangman.verify_win
+# hangman.add_guess_count('h')
+# p hangman.counter
+# hangman.add_guess_count('x')
+# p hangman.counter
+# hangman.counter = 7
+# hangman.verify_game_count
+# p hangman.game_valid
 
+puts "Input a word or phrase:"
+solution = gets.chomp
+
+hangman = Hangman.new(solution)
+until (hangman.game_result || !hangman.game_valid)
+	puts "Guess a letter:"
+	guess = gets.chomp.downcase
+	hangman.verify_guess(guess)
+	p hangman.game_array
+	hangman.verify_win
+	hangman.add_guess_count(guess)
+	p hangman.counter
+	hangman.verify_game_count
+end
+hangman.finish_game
 
 =begin 
 
@@ -107,20 +156,22 @@ Solution = input (possibly without displaying)
 Initialize game with solution input
 
 Start guessing loop
-	Run 'Create character array from input' method
 	Prompt guess
-	Run 'Verify letter' method (update array)
-	Run 'Verify winning solution' method
+	Run 'Verify guess' method (update array)
+	Run 'Verify win' method
 		If 'win'
-			Break loop
+			Update win variable
+		End if
+	Run 'add guess count' method
+	Run 'verify game count' method
+		If 'loss'
+			update loss variable
+		End if
+	Game standing method
+		If 'win' or 'loss'
+			End loop
 		Else
-			Run 'add guess count' method
-			Run 'verify game count' method
-				If 'loss'
-					Break loop
-				Else
-					Guess again
-				End if
+			Repeat guessing program
 		End if
 End loop
 
