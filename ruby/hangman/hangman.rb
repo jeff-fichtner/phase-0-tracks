@@ -8,6 +8,8 @@ class Hangman
 	end
 
 	def update_char_array index
+		@game_array[index] = @solution[index]
+		@game_array
 	end
 
 	def verify_guess game_array
