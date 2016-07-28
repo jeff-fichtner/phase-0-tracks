@@ -2,17 +2,22 @@ class Hangman
 	attr_reader :solution, :game_array
 
 	def initialize solution
-		@solution = solution.downcase.split('')
+		@solution_array = solution.downcase.split('')
 		@game_array = Array.new
-		@solution.each { |x| @game_array << '_' }
+		@solution_array.each { |x| @game_array << '_' }
 	end
 
 	def update_char_array index
-		@game_array[index] = @solution[index]
+		@game_array[index] = @solution_array[index]
 		@game_array
 	end
 
-	def verify_guess game_array
+	def verify_guess guess
+		if @solution_array.index(guess) != nil
+			update_char_array(@solution_array.index(guess))
+		else
+			@game_array
+		end
 	end
 
 	def verify_win game_array
@@ -29,7 +34,9 @@ class Hangman
 end
 
 hangman = Hangman.new("hangman")
-p hangman.game_array
+p hangman.game_array.join
+hangman.verify_guess('h')
+p hangman.game_array.join
 
 
 =begin 

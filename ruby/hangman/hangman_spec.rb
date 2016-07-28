@@ -8,11 +8,11 @@ describe Hangman do
   end
 
   it "verifies a guess" do
-    expect(hangman.verify_guess('h')).to eq 0
+    expect(hangman.verify_guess('h')).to eq ['h','_','_','_','_','_','_']
   end
 
   it "verifies a guess" do
-    expect(hangman.verify_guess('x')).to eq nil
+    expect(hangman.verify_guess('x')).to eq ['_','_','_','_','_','_','_']
   end
 
   it "verifies a winning solution" do
