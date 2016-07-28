@@ -1,0 +1,41 @@
+require_relative 'hangman'
+
+describe Hangman do
+  let(:hangman) { Hangman.new("hangman") }
+
+  it "creates a character array from input" do
+    expect(hangman.char_array(@solution)).to eq ['h','a','n','g','m','a','n']
+  end
+
+  it "adds to the game array" do
+    expect(hangman.update_char_array(1)).to eq ['_','a','_','_','_','_','_']
+  end
+
+  it "verifies a guess" do
+    expect(hangman.verify_guess('h')).to eq 0
+  end
+
+  it "verifies a guess" do
+    expect(hangman.verify_guess('x')).to eq nil
+  end
+
+  it "verifies a winning solution" do
+    expect(hangman.verify_win(['h','a','n','g','m','a','n'])).to eq true
+  end
+
+  it "verifies a winning solution" do
+    expect(hangman.verify_win(['h','a','n','g','m','a','_'])).to eq false
+  end
+
+  it "adds to game count" do
+    expect(hangman.add_guess_count(true)).to eq 0
+  end
+
+  it "adds to game count" do
+    expect(hangman.add_guess_count(false)).to eq 1
+  end
+
+  it "verifies game count" do
+    expect(hangman.verify_game_count(7,1)).to eq 6
+  end
+end

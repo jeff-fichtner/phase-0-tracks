@@ -1,3 +1,32 @@
+class Hangman
+	def initialize solution
+		@solution
+		@game_array
+	end
+
+	def char_array
+	end
+
+	def update_char_array index
+	end
+
+	def verify_guess game_array
+	end
+
+	def verify_win game_array
+	end
+
+	def add_guess_count guess
+	end
+
+	def verify_game_count
+	end
+
+	def finish_game result
+	end
+end
+
+
 =begin 
 
 Class: Hangman
@@ -16,7 +45,7 @@ Class: Hangman
 		Overwrite value in 'game' array with corresponding value in 'solution' array
 		Output: updated 'game' array
 
-	Verify letter:
+	Verify guess:
 		If guess is found inside 'solution' array
 			Run 'add to game array' method
 			print 'game' array
