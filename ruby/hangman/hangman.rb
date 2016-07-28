@@ -1,10 +1,10 @@
 class Hangman
-	def initialize solution
-		@solution
-		@game_array
-	end
+	attr_reader :solution, :game_array
 
-	def char_array
+	def initialize solution
+		@solution = solution.downcase.split('')
+		@game_array = Array.new
+		@solution.each { |x| @game_array << '_' }
 	end
 
 	def update_char_array index
@@ -25,6 +25,9 @@ class Hangman
 	def finish_game result
 	end
 end
+
+hangman = Hangman.new("hangman")
+p hangman.game_array
 
 
 =begin 

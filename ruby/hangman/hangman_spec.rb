@@ -3,10 +3,6 @@ require_relative 'hangman'
 describe Hangman do
   let(:hangman) { Hangman.new("hangman") }
 
-  it "creates a character array from input" do
-    expect(hangman.char_array(@solution)).to eq ['h','a','n','g','m','a','n']
-  end
-
   it "adds to the game array" do
     expect(hangman.update_char_array(1)).to eq ['_','a','_','_','_','_','_']
   end
