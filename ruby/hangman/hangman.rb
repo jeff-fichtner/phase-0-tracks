@@ -111,25 +111,11 @@ until (hangman.game_result || !hangman.game_valid)
 end
 hangman.end_of_game
 
-# ---------------------
 
-# hangman = Hangman.new("hangman")
-# p hangman.game_array.join
-# hangman.update_game_array('h')
-# p hangman.game_array.join
-# hangman.update_game_array('x')
-# p hangman.game_array.join
-# hangman.game_array = ['h','a','n','g','m','a','_']
-# p hangman.did_player_win
-# hangman.add_guess_count('h')
-# p hangman.counter
-# hangman.add_guess_count('x')
-# p hangman.counter
-# hangman.counter = 7
-# hangman.is_game_over
-# p hangman.game_valid
+=begin pseudocode
+---------------------
 
-=begin 
+# game class
 
 Class: Hangman
 
@@ -194,7 +180,7 @@ Class: Hangman
 			Display message (plural)
 		End if
 
-	Game finish (print)
+	Game finish (print):
 		If win
 			Print winning message
 			Print full solution
@@ -203,34 +189,27 @@ Class: Hangman
 			Print full solution
 		End if
 
-End class Hangman
+---------------------
 
----------------
+# driver code
 
 Solution = input
-Initialize game with solution input
+Initialize game with solution
 
-Start guessing loop (while guess count is valid or game hasn't been won yet
+Start guessing loop (while guess count is valid or game hasn't been won yet)
+	Set if it's a repeat guess to 'false'
 	Prompt guess
-	Run 'Verify guess' method (update array)
-	Run 'Verify win' method
-		If 'win'
-			Update win variable
-		End if
-	Run 'add guess count' method
-	Run 'verify game count' method
-		If 'loss'
-			update loss variable
-		End if
-	Game standing method
-		If 'win' or 'loss'
-			End loop
-		Else
-			Repeat guessing program
-		End if
+	Save guess
+	If guess is correct, update the game array
+	Display the updated game array
+	Check if the game is won (update variable)
+	Check if guess was a repeat
+	Add current guess to list of guesses
+	Check if player is out of turns (update variable)
+	Display remaining turns in the game (or none if game is over)
 End loop
 
 Print winning or losing results
 
--------
+---------------------
 =end
