@@ -3,35 +3,39 @@ require_relative 'hangman'
 describe Hangman do
   let(:hangman) { Hangman.new("hangman") }
 
-  it "adds to the game array" do
-    expect(hangman.update_char_array(1)).to eq ['_','a','_','_','_','_','_']
+  it "updates game_array" do
+    expect(hangman.update_game_array).to eq nil
   end
 
-  it "verifies a guess" do
-    expect(hangman.verify_guess('h')).to eq ['h','_','_','_','_','_','_']
+  it "duplicates letter" do
+    expect(hangman.duplicate_letter).to eq ["_", "_", "_", "_", "_", "_", "_"]
   end
 
-  it "verifies a guess" do
-    expect(hangman.verify_guess('x')).to eq ['_','_','_','_','_','_','_']
+  it "verifies if player won" do
+    expect(hangman.did_player_win).to eq nil
   end
 
-  it "verifies a winning solution" do
-    expect(hangman.verify_win(['h','a','n','g','m','a','n'])).to eq true
+  it "verifies if a guess was repeated" do
+    expect(hangman.was_guess_repeat).to eq nil
   end
 
-  it "verifies a winning solution" do
-    expect(hangman.verify_win(['h','a','n','g','m','a','_'])).to eq nil
+  it "adds current guess to list of all guesses" do
+    expect(hangman.update_guess_array).to eq [""]
   end
 
-  it "adds to game count" do
-    expect(hangman.add_guess_count('h')).to eq 0
+  it "adds to counter if guess was incorrect" do
+    expect(hangman.add_guess_count).to eq 1
   end
 
-  it "adds to game count" do
-    expect(hangman.add_guess_count('x')).to eq 1
+  it "verifies if there are still turns left" do
+    expect(hangman.is_game_over).to eq nil
   end
 
-  it "verifies game count" do
-    expect(hangman.verify_game_count(7)).to eq true
+  it "displays the remaining turns" do
+    expect(hangman.display_remaining_turns).to eq nil
+  end
+
+  it "prints the end result" do
+    expect(hangman.end_of_game).to eq nil
   end
 end

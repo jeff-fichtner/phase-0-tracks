@@ -47,7 +47,7 @@ class Hangman
 		end
 	end
 	
-	def update_guess_list
+	def update_guess_array
 		@guess_array << @guess
 	end
 	
@@ -104,12 +104,13 @@ until (hangman.game_result || !hangman.game_valid)
 	puts hangman.game_array.join(' ')
 	hangman.did_player_win
 	hangman.was_guess_repeat
-	hangman.update_guess_list
+	hangman.update_guess_array
 	hangman.add_guess_count
 	hangman.is_game_over
 	hangman.display_remaining_turns
 end
 hangman.end_of_game
+
 
 
 =begin pseudocode
