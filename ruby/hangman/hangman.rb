@@ -1,6 +1,6 @@
 class Hangman
-	attr_reader :solution_array, :game_result, :game_valid, :guess_array
-	attr_accessor :game_array, :counter, :guess, :repeat_guess
+	attr_reader :solution_array, :game_result, :game_valid, :guess_array, :counter, :game_array
+	attr_accessor :guess, :repeat_guess
 
 	def initialize solution
 		@solution_array = solution.downcase.split('')
@@ -17,7 +17,6 @@ class Hangman
 
 	def update_char_array
 		if @solution_array.count(@guess) > 1
-			p "the duplicate letter method is running"
 			duplicate_letter
 		else
 			index = @solution_array.index(@guess)
@@ -28,9 +27,7 @@ class Hangman
 
 	def duplicate_letter
 		@duplicate_indices = @solution_array.each_index.select {|char| @solution_array[char] == @guess}
-		p @duplicate_indices
 		@duplicate_indices.each {|index| @game_array[index] = @solution_array[index]}
-		@duplicate_indices.clear
 		@game_array
 	end
 
@@ -66,6 +63,17 @@ class Hangman
 		end
 	end
 
+	def display_remaining_turns
+		turns_left = @solution_array.length - @counter
+		if !@game_valid
+			# do nothing!
+		elsif turns_left == 1
+			puts "You have #{turns_left} turn left."
+		else
+			puts "You have #{turns_left} turns left."
+		end
+	end
+
 	def is_game_over
 		if @counter == @solution_array.length
 			@game_valid = false
@@ -75,7 +83,7 @@ class Hangman
 	def end_of_game
 		if @game_result
 			puts "Congratulations on winning the game!"
-			puts "The final solution was \"#{@solution_array.join}\"."
+			puts "The final solution was in fact \"#{@solution_array.join}\"."
 		else
 			puts "Loser!"
 			puts "The correct solution was \"#{@solution_array.join}\"."
@@ -113,13 +121,13 @@ until (hangman.game_result || !hangman.game_valid)
 	puts "Guess a letter: "
 	hangman.guess = gets.chomp.downcase
 	hangman.update_game_array
-	p hangman.game_array
+	puts hangman.game_array.join(' ')
 	hangman.did_player_win
 	hangman.was_guess_repeat
 	hangman.update_guess_list
 	hangman.add_guess_count
-	p hangman.counter
 	hangman.is_game_over
+	hangman.display_remaining_turns
 end
 hangman.end_of_game
 
@@ -128,8 +136,10 @@ hangman.end_of_game
 Class: Hangman
 
 	initialize
-		- solution
-		- empty 'game' array with length of solution ['_','_','_','_']
+		- solution array with correct characters
+		- create game array with length of solution and '_'
+		- start counter
+		- create 
 
 	Create character array from input:
 		Input: solution - word or phrase
