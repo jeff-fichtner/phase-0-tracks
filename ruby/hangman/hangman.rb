@@ -16,7 +16,9 @@ class Hangman
 
 	def update_char_array
 		if @solution_array.count(@guess) > 1
-			duplicate_letter
+			p "the duplicate letter method just ran"
+			@game_array
+			# duplicate_letter
 		else
 			index = @solution_array.index(@guess)
 			@game_array[index] = @solution_array[index]
