@@ -11,6 +11,13 @@ class Hangman
 		@solution_array.each { |x| @game_array << '_' }
 	end
 
+	def duplicate_letter guess
+		# if duplicate, reruns verify_guess with new index
+		# take solution array
+		# @duplicate_counter
+		# @
+	end
+
 	def update_char_array index
 		@game_array[index] = @solution_array[index]
 		@game_array
