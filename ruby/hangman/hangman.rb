@@ -33,13 +33,13 @@ class Hangman
 	# 	while duplicate_counter < total_duplicates
 	# 		update_char_array(@guess)
 	# 		update_duplicate_array(@guess)
-	# 	# if duplicate, reruns verify_guess with new index
+	# 	# if duplicate, reruns is_guess_correct with new index
 	# 	# take solution array
 	# 	# @duplicate_counter
 	# 	# Array#select! {|item| block} > ary
 	# end
 
-	def verify_guess
+	def is_guess_correct
 		if @solution_array.index(@guess) != nil
 			update_char_array
 		else
@@ -47,19 +47,19 @@ class Hangman
 		end
 	end
 
-	def verify_win
+	def did_player_win
 		if @solution_array == @game_array
 			@game_result = true
 		end
 	end
 	
-	def verify_repeat_guess
+	def was_guess_repeat
 		if @guess_array.index(@guess) != nil
 			@repeat_guess = true
 		end
 	end
 	
-	def update_guess_array
+	def update_guess_list
 		@guess_array << @guess
 	end
 	
@@ -71,13 +71,13 @@ class Hangman
 		end
 	end
 
-	def verify_game_count
+	def is_game_over
 		if @counter == @solution_array.length
 			@game_valid = false
 		end
 	end
 
-	def finish_game
+	def end_of_game
 		if @game_result
 			puts "Congratulations on winning the game!"
 			puts "The final solution was \"#{@solution_array.join}\"."
@@ -91,18 +91,18 @@ end
 
 # hangman = Hangman.new("hangman")
 # p hangman.game_array.join
-# hangman.verify_guess('h')
+# hangman.is_guess_correct('h')
 # p hangman.game_array.join
-# hangman.verify_guess('x')
+# hangman.is_guess_correct('x')
 # p hangman.game_array.join
 # hangman.game_array = ['h','a','n','g','m','a','_']
-# p hangman.verify_win
+# p hangman.did_player_win
 # hangman.add_guess_count('h')
 # p hangman.counter
 # hangman.add_guess_count('x')
 # p hangman.counter
 # hangman.counter = 7
-# hangman.verify_game_count
+# hangman.is_game_over
 # p hangman.game_valid
 
 require 'io/console'
@@ -111,18 +111,18 @@ solution = STDIN.noecho(&:gets).chomp
 
 hangman = Hangman.new(solution)
 until (hangman.game_result || !hangman.game_valid)
-	puts "Guess a letter:"
+	puts "Guess a letter: "
 	hangman.guess = gets.chomp.downcase
-	hangman.verify_guess
+	hangman.is_guess_correct
 	p hangman.game_array
-	hangman.verify_win
-	hangman.verify_repeat_guess
-	hangman.update_guess_array
+	hangman.did_player_win
+	hangman.was_guess_repeat
+	hangman.update_guess_list
 	hangman.add_guess_count
 	p hangman.counter
-	hangman.verify_game_count
+	hangman.is_game_over
 end
-hangman.finish_game
+hangman.end_of_game
 
 =begin 
 
