@@ -54,10 +54,10 @@ class Hangman
 	def finish_game
 		if @game_result
 			puts "Congratulations on winning the game!"
-			puts "The final solution was #{@solution_array.join}."
+			puts "The final solution was \"#{@solution_array.join}\"."
 		else
 			puts "Sucks to lose."
-			puts "The correct solution was #{@solution_array.join}."
+			puts "The correct solution was \"#{@solution_array.join}\"."
 			puts "Better luck next time."
 		end
 	end
