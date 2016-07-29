@@ -1,3 +1,5 @@
+# game class
+
 class Hangman
 	attr_reader :solution_array, :game_result, :game_valid, :guess_array, :counter, :game_array
 	attr_accessor :guess, :repeat_guess
@@ -15,13 +17,15 @@ class Hangman
 		@duplicate_indices = Array.new
 	end
 
-	def update_char_array
-		if @solution_array.count(@guess) > 1
-			duplicate_letter
-		else
-			index = @solution_array.index(@guess)
-			@game_array[index] = @solution_array[index]
-			@game_array
+	def update_game_array
+		if @solution_array.index(@guess) != nil
+			if @solution_array.count(@guess) > 1
+				duplicate_letter
+			else
+				index = @solution_array.index(@guess)
+				@game_array[index] = @solution_array[index]
+				@game_array
+			end
 		end
 	end
 
@@ -29,14 +33,6 @@ class Hangman
 		@duplicate_indices = @solution_array.each_index.select {|char| @solution_array[char] == @guess}
 		@duplicate_indices.each {|index| @game_array[index] = @solution_array[index]}
 		@game_array
-	end
-
-	def update_game_array
-		if @solution_array.index(@guess) != nil
-			update_char_array
-		else
-			@game_array
-		end
 	end
 
 	def did_player_win
@@ -58,8 +54,12 @@ class Hangman
 	def add_guess_count
 		if @solution_array.index(@guess) == nil && !@repeat_guess
 			@counter += 1
-		else
-			@counter
+		end
+	end
+
+	def is_game_over
+		if @counter == @solution_array.length
+			@game_valid = false
 		end
 	end
 
@@ -71,12 +71,6 @@ class Hangman
 			puts "You have #{turns_left} turn left."
 		else
 			puts "You have #{turns_left} turns left."
-		end
-	end
-
-	def is_game_over
-		if @counter == @solution_array.length
-			@game_valid = false
 		end
 	end
 
@@ -95,21 +89,7 @@ class Hangman
 	end
 end
 
-# hangman = Hangman.new("hangman")
-# p hangman.game_array.join
-# hangman.update_game_array('h')
-# p hangman.game_array.join
-# hangman.update_game_array('x')
-# p hangman.game_array.join
-# hangman.game_array = ['h','a','n','g','m','a','_']
-# p hangman.did_player_win
-# hangman.add_guess_count('h')
-# p hangman.counter
-# hangman.add_guess_count('x')
-# p hangman.counter
-# hangman.counter = 7
-# hangman.is_game_over
-# p hangman.game_valid
+# driver code
 
 require 'io/console'
 puts "Input a word or phrase, and press 'Enter': "
@@ -131,47 +111,69 @@ until (hangman.game_result || !hangman.game_valid)
 end
 hangman.end_of_game
 
+# ---------------------
+
+# hangman = Hangman.new("hangman")
+# p hangman.game_array.join
+# hangman.update_game_array('h')
+# p hangman.game_array.join
+# hangman.update_game_array('x')
+# p hangman.game_array.join
+# hangman.game_array = ['h','a','n','g','m','a','_']
+# p hangman.did_player_win
+# hangman.add_guess_count('h')
+# p hangman.counter
+# hangman.add_guess_count('x')
+# p hangman.counter
+# hangman.counter = 7
+# hangman.is_game_over
+# p hangman.game_valid
+
 =begin 
 
 Class: Hangman
 
 	initialize
-		- solution array with correct characters
-		- create game array with length of solution and '_'
-		- start counter
-		- create 
+		start counter
+		create:
+			solution_array - official correct answer, separated to characters
+			game_result - game is lost (false) until won (true)
+			game_valid - game is valid (true) until lost (false)
+			guess_array - list of guesses
+			counter - current guess attempt
+			game_array - array updated with correct guesses/feedback array
+			guess - current guess
+			repeat_guess - not a repeat (false) until true, resets before every guess
 
-	Create character array from input:
-		Input: solution - word or phrase
-		Separate solution into array of characters
-		Output: 'solution' array
-
-	Add to 'game' array:
-		Input: index of correct letter
-		Overwrite value in 'game' array with corresponding value in 'solution' array
-		Output: updated 'game' array
-
-	Verify guess:
-		If guess is found inside 'solution' array
-			Run 'add to game array' method
-			print 'game' array
-			output: updated 'game' array
-		Else if guess isn't found inside 'solution' array
-			print 'game' array
-			opt message
+	Update game_array:
+		If guess is correct:
+			If duplicate
+				Run duplicate letter update method
+			Else
+				Set game_array at index of correct guess eq to corresponding index of correct guess in solution_array
+			End if
 		End if
 
-	Verify winning solution:
-		If 'solution' array matches 'game' array
-			End program, return 'win'
-		Else
-			Keep running program
+	Duplicate letter:
+		Update duplicate_indices with indexes in solution_array where object matches the guess
+		For each index, set game_array at index of correct guess eq to corresponding index of correct guess in solution_array
+		Clear duplicate_indices
+
+	Update game result:
+		If solution_array eq game_array
+			Set game_result to eq true
 		End if
+
+	Verify repeat guess:
+		If guess is contained in guess_array
+			Set repeat_guess to true
+		End if
+
+	Update list of guesses:
+		Push guess into guess_array
 
 	Add guess count:
-		If guess is right
-			no count
-		If guess is wrong
+		If guess is wrong and repeat_guess is false (guess isn't a repeat)
 			Add one to count
 		End if
 
@@ -182,25 +184,33 @@ Class: Hangman
 			End program, return 'loss'
 		End if
 
+	Display remaining turns:
+		Turns_left is eq to length of solution_array minus counter
+		If game is finished
+			Don't display anything
+		Elsif turns_left == 1
+			Display message (singular)
+		Else
+			Display message (plural)
+		End if
+
 	Game finish (print)
 		If win
 			Print winning message
 			Print full solution
-			Play again?
 		If loss
 			Print losing message
 			Print full solution
-			Play again?
 		End if
 
 End class Hangman
 
 ---------------
 
-Solution = input (possibly without displaying)
+Solution = input
 Initialize game with solution input
 
-Start guessing loop
+Start guessing loop (while guess count is valid or game hasn't been won yet
 	Prompt guess
 	Run 'Verify guess' method (update array)
 	Run 'Verify win' method
