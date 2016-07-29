@@ -1,5 +1,5 @@
 class Hangman
-	attr_reader :solution_array, :game_result, :game_valid
+	attr_reader :solution_array, :game_result, :game_valid, :guess_array
 	attr_accessor :game_array, :counter, :guess, :repeat_guess
 
 	def initialize solution
@@ -15,16 +15,14 @@ class Hangman
 	end
 
 	def update_char_array
-		index = @solution_array.index(@guess)
-		@game_array[index] = @solution_array[index]
-		@game_array
+		if @solution_array.count(@guess) > 1
+			duplicate_letter
+		else
+			index = @solution_array.index(@guess)
+			@game_array[index] = @solution_array[index]
+			@game_array
+		end
 	end
-
-	# def update_duplicate_array
-	# 	index = @solution_array.index(@guess)
-	# 	#update @duplicate_array
-	# 	@duplicate_array
-	# end
 
 	# def duplicate_letter
 	# 	@duplicate_array = @solution_array
@@ -32,14 +30,14 @@ class Hangman
 	# 	duplicate_counter = 0
 	# 	while duplicate_counter < total_duplicates
 	# 		update_char_array(@guess)
-	# 		update_duplicate_array(@guess)
-	# 	# if duplicate, reruns is_guess_correct with new index
+	# 		update_duplicates(@guess)
+	# 	# if duplicate, reruns update_game_array with new index
 	# 	# take solution array
 	# 	# @duplicate_counter
 	# 	# Array#select! {|item| block} > ary
 	# end
 
-	def is_guess_correct
+	def update_game_array
 		if @solution_array.index(@guess) != nil
 			update_char_array
 		else
@@ -82,18 +80,21 @@ class Hangman
 			puts "Congratulations on winning the game!"
 			puts "The final solution was \"#{@solution_array.join}\"."
 		else
-			puts "Sucks to lose."
+			puts "Loser!"
 			puts "The correct solution was \"#{@solution_array.join}\"."
-			puts "Better luck next time."
+			print "You made these poor choices: "
+			puts @guess_array.join(", ")
+			puts "What were you thinking?"
+			puts "Oh well. Better luck next time."
 		end
 	end
 end
 
 # hangman = Hangman.new("hangman")
 # p hangman.game_array.join
-# hangman.is_guess_correct('h')
+# hangman.update_game_array('h')
 # p hangman.game_array.join
-# hangman.is_guess_correct('x')
+# hangman.update_game_array('x')
 # p hangman.game_array.join
 # hangman.game_array = ['h','a','n','g','m','a','_']
 # p hangman.did_player_win
@@ -111,9 +112,10 @@ solution = STDIN.noecho(&:gets).chomp
 
 hangman = Hangman.new(solution)
 until (hangman.game_result || !hangman.game_valid)
+	hangman.repeat_guess = false
 	puts "Guess a letter: "
 	hangman.guess = gets.chomp.downcase
-	hangman.is_guess_correct
+	hangman.update_game_array
 	p hangman.game_array
 	hangman.did_player_win
 	hangman.was_guess_repeat
