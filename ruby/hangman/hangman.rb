@@ -1,6 +1,6 @@
 class Hangman
 	attr_reader :solution_array, :game_result, :game_valid
-	attr_accessor :game_array, :counter
+	attr_accessor :game_array, :counter, :guess
 
 	def initialize solution
 		@solution_array = solution.downcase.split('')
@@ -9,23 +9,37 @@ class Hangman
 		@counter = 0
 		@game_array = Array.new
 		@solution_array.each { |x| @game_array << '_' }
+		@guess = String.new
 	end
 
-	def duplicate_letter guess
-		# if duplicate, reruns verify_guess with new index
-		# take solution array
-		# @duplicate_counter
-		# @
-	end
-
-	def update_char_array index
+	def update_char_array
+		index = @solution_array.index(@guess)
 		@game_array[index] = @solution_array[index]
 		@game_array
 	end
 
-	def verify_guess guess
-		if @solution_array.index(guess) != nil
-			update_char_array(@solution_array.index(guess))
+	# def update_duplicate_array
+	# 	index = @solution_array.index(@guess)
+	# 	#update @duplicate_array
+	# 	@duplicate_array
+	# end
+
+	# def duplicate_letter
+	# 	@duplicate_array = @solution_array
+	# 	total_duplicates = @solution_array.count(@guess)
+	# 	duplicate_counter = 0
+	# 	while duplicate_counter < total_duplicates
+	# 		update_char_array(@guess)
+	# 		update_duplicate_array(@guess)
+	# 	# if duplicate, reruns verify_guess with new index
+	# 	# take solution array
+	# 	# @duplicate_counter
+	# 	# Array#select! {|item| block} > ary
+	# end
+
+	def verify_guess
+		if @solution_array.index(@guess) != nil
+			update_char_array
 		else
 			@game_array
 		end
@@ -37,8 +51,8 @@ class Hangman
 		end
 	end
 
-	def add_guess_count guess
-		if @solution_array.index(guess) == nil
+	def add_guess_count
+		if @solution_array.index(@guess) == nil
 			@counter += 1
 		else
 			@counter
@@ -79,17 +93,18 @@ end
 # hangman.verify_game_count
 # p hangman.game_valid
 
-puts "Input a word or phrase:"
-solution = gets.chomp
+require 'io/console'
+puts "Input a word or phrase, and press 'Enter': "
+solution = STDIN.noecho(&:gets).chomp
 
 hangman = Hangman.new(solution)
 until (hangman.game_result || !hangman.game_valid)
 	puts "Guess a letter:"
-	guess = gets.chomp.downcase
-	hangman.verify_guess(guess)
+	hangman.guess = gets.chomp.downcase
+	hangman.verify_guess
 	p hangman.game_array
 	hangman.verify_win
-	hangman.add_guess_count(guess)
+	hangman.add_guess_count
 	p hangman.counter
 	hangman.verify_game_count
 end
