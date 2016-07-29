@@ -1,6 +1,6 @@
 class Hangman
 	attr_reader :solution_array, :game_result, :game_valid
-	attr_accessor :game_array, :counter, :guess
+	attr_accessor :game_array, :counter, :guess, :repeat_guess
 
 	def initialize solution
 		@solution_array = solution.downcase.split('')
@@ -10,6 +10,8 @@ class Hangman
 		@game_array = Array.new
 		@solution_array.each { |x| @game_array << '_' }
 		@guess = String.new
+		@guess_array = Array.new
+		@repeat_guess = false
 	end
 
 	def update_char_array
@@ -50,9 +52,19 @@ class Hangman
 			@game_result = true
 		end
 	end
-
+	
+	def verify_repeat_guess
+		if @guess_array.index(@guess) != nil
+			@repeat_guess = true
+		end
+	end
+	
+	def update_guess_array
+		@guess_array << @guess
+	end
+	
 	def add_guess_count
-		if @solution_array.index(@guess) == nil
+		if @solution_array.index(@guess) == nil && !@repeat_guess
 			@counter += 1
 		else
 			@counter
@@ -104,6 +116,8 @@ until (hangman.game_result || !hangman.game_valid)
 	hangman.verify_guess
 	p hangman.game_array
 	hangman.verify_win
+	hangman.verify_repeat_guess
+	hangman.update_guess_array
 	hangman.add_guess_count
 	p hangman.counter
 	hangman.verify_game_count
