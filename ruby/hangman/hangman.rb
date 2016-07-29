@@ -12,13 +12,13 @@ class Hangman
 		@guess = String.new
 		@guess_array = Array.new
 		@repeat_guess = false
+		@duplicate_indices = Array.new
 	end
 
 	def update_char_array
 		if @solution_array.count(@guess) > 1
-			p "the duplicate letter method just ran"
-			@game_array
-			# duplicate_letter
+			p "the duplicate letter method is running"
+			duplicate_letter
 		else
 			index = @solution_array.index(@guess)
 			@game_array[index] = @solution_array[index]
@@ -26,18 +26,13 @@ class Hangman
 		end
 	end
 
-	# def duplicate_letter
-	# 	@duplicate_array = @solution_array
-	# 	total_duplicates = @solution_array.count(@guess)
-	# 	duplicate_counter = 0
-	# 	while duplicate_counter < total_duplicates
-	# 		update_char_array(@guess)
-	# 		update_duplicates(@guess)
-	# 	# if duplicate, reruns update_game_array with new index
-	# 	# take solution array
-	# 	# @duplicate_counter
-	# 	# Array#select! {|item| block} > ary
-	# end
+	def duplicate_letter
+		@duplicate_indices = @solution_array.each_index.select {|char| @solution_array[char] == @guess}
+		p @duplicate_indices
+		@duplicate_indices.each {|index| @game_array[index] = @solution_array[index]}
+		@duplicate_indices.clear
+		@game_array
+	end
 
 	def update_game_array
 		if @solution_array.index(@guess) != nil
