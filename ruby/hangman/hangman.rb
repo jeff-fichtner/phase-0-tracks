@@ -134,7 +134,7 @@ Class: Hangman
 
 	Update game_array:
 		If guess is correct:
-			If duplicate
+			If guess is duplicate
 				Run duplicate letter update method
 			Else
 				Set game_array at index of correct guess eq to corresponding index of correct guess in solution_array
@@ -142,7 +142,7 @@ Class: Hangman
 		End if
 
 	Duplicate letter:
-		Update duplicate_indices with indexes in solution_array where object matches the guess
+		Update duplicate_indices with indices in solution_array where object matches the guess
 		For each index, set game_array at index of correct guess eq to corresponding index of correct guess in solution_array
 		Clear duplicate_indices
 
@@ -157,10 +157,10 @@ Class: Hangman
 		End if
 
 	Update list of guesses:
-		Push guess into guess_array
+		Add guess into guess_array
 
 	Add guess count:
-		If guess is wrong and repeat_guess is false (guess isn't a repeat)
+		If guess is wrong and isn't a repeat)
 			Add one to count
 		End if
 
@@ -172,7 +172,7 @@ Class: Hangman
 		End if
 
 	Display remaining turns:
-		Turns_left is eq to length of solution_array minus counter
+		Turns_left is eq to length of solution_array subtracted by guess attempts (counter)
 		If game is finished
 			Don't display anything
 		Elsif turns_left == 1
@@ -197,16 +197,16 @@ Class: Hangman
 Solution = input
 Initialize game with solution
 
-Start guessing loop (while guess count is valid or game hasn't been won yet)
+While the player still has turns and hasn't won already
 	Set if it's a repeat guess to 'false'
 	Prompt guess
 	Save guess
 	If guess is correct, update the game array
 	Display the updated game array
-	Check if the game is won (update variable)
+	Check if the game is won (update game_result true/false)
 	Check if guess was a repeat
 	Add current guess to list of guesses
-	Check if player is out of turns (update variable)
+	Check if player is out of turns (update game_valid true/false)
 	Display remaining turns in the game (or none if game is over)
 End loop
 
