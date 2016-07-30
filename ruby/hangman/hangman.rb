@@ -47,7 +47,11 @@ class Hangman
 		end
 	end
 	
+<<<<<<< HEAD
 	def update_guess_array
+=======
+	def update_guess_array 
+>>>>>>> master
 		@guess_array << @guess
 	end
 	
@@ -66,7 +70,7 @@ class Hangman
 	def display_remaining_turns
 		turns_left = @solution_array.length - @counter
 		if !@game_valid
-			# do nothing!
+			# shh! the end is nigh!
 		elsif turns_left == 1
 			puts "You have #{turns_left} turn left."
 		else
@@ -104,7 +108,11 @@ until (hangman.game_result || !hangman.game_valid)
 	puts hangman.game_array.join(' ')
 	hangman.did_player_win
 	hangman.was_guess_repeat
+<<<<<<< HEAD
 	hangman.update_guess_array
+=======
+	hangman.update_guess_array 
+>>>>>>> master
 	hangman.add_guess_count
 	hangman.is_game_over
 	hangman.display_remaining_turns
