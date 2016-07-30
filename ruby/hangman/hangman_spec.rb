@@ -3,7 +3,7 @@ require_relative 'hangman'
 describe Hangman do
   let(:hangman) { Hangman.new("hangman") }
 
- 	context "adds to the game array" do
+ 	describe "adds to the game array" do
 
   	it "is given a duplicate letter" do
 	  	hangman.instance_variable_set(:@guess, "a")
@@ -30,23 +30,38 @@ describe Hangman do
     expect(hangman.was_guess_repeat).to eq true
   end
 
-  # it "verifies a winning solution" do
-  #   expect(hangman.verify_win(['h','a','n','g','m','a','n'])).to eq true
-  # end
+  it "updates guess array" do
+  	hangman.instance_variable_set(:@guess, "a")
+    hangman.update_guess_array
+    expect(hangman.guess_array).to eq ['a']
+	 end
 
-  # it "verifies a winning solution" do
-  #   expect(hangman.verify_win(['h','a','n','g','m','a','_'])).to eq nil
-  # end
+  describe "adds to guess count" do
+  	
+  	it "is correct" do
+  		hangman.instance_variable_set(:@guess, "a")
+  		hangman.add_guess_count
+  		expect(hangman.counter).to eq 0
+  	end
 
-  # it "adds to game count" do
-  #   expect(hangman.add_guess_count('h')).to eq 0
-  # end
+  	it "isn't correct but is a repeat" do
+  		hangman.instance_variable_set(:@guess, "x")
+  		hangman.instance_variable_set(:@repeat_guess, true)
+  		hangman.add_guess_count
+  		expect(hangman.counter).to eq 0
+  	end
 
-  # it "adds to game count" do
-  #   expect(hangman.add_guess_count('x')).to eq 1
-  # end
+  	it "isn't correct or a repeat" do
+  		hangman.instance_variable_set(:@guess, "x")
+  		hangman.add_guess_count
+  		expect(hangman.counter).to eq 1
+  	end
 
-  # it "verifies game count" do
-  #   expect(hangman.verify_game_count(7)).to eq true
-  # end
+  end
+
+  it "verifies total guess attempts" do
+  	hangman.instance_variable_set(:@counter, 7)
+  	hangman.is_game_over
+  	expect(hangman.game_valid).to eq false
+  end
 end
