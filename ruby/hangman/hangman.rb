@@ -47,7 +47,7 @@ class Hangman
 		end
 	end
 	
-	def update_guess_array 
+	def update_guess_array
 		@guess_array << @guess
 	end
 	
