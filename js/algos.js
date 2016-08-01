@@ -8,10 +8,18 @@
 // returns object at index of largest integer in original array
 
 
+
 // release 1 - find a key-value match
 // takes two objects and checks to see if the objects share at least one key-value pair
 
-// pseudocode goes here
+// Input: two objects
+// Set 'match' variable to false
+// Loop through all object pairs 
+// 	If pairs are a match
+// 		Update 'match' to true
+// 	End if
+// End loop
+
 
 
 // release 2 - generate random test data
