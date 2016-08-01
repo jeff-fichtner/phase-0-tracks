@@ -8,8 +8,8 @@
 // output: reversed word
 
 function reverse(word) {
-	var sortingArray = [];
 	var characterArray = word.split("");
+	var sortingArray = [];
 	var count = characterArray.length;
 	for (var i = 0; i < count; i++) {
 		var index = count - (i + 1);
@@ -19,7 +19,7 @@ function reverse(word) {
 }
 
 var str = "hello";
-var test = reverse(str);
+var str_reverse = reverse(str);
 if (1 == 1) {
-	console.log("The reverse of \"" + str + "\" is \"" + test + "\".");
+	console.log("The reverse of \"" + str + "\" is \"" + str_reverse + "\".");
 }
