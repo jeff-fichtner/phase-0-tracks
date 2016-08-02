@@ -90,3 +90,18 @@ end
 
 #=======================================================================
 # Reflection Section
+
+# What are the differences between the two different hash syntaxes shown in the state_data file?
+# - They both represent the 'key' in a 'key'-'value' pair, but the hash rocket works when the key has spaces.
+
+# What does require_relative do? How is it different from require?
+# - Require loads files in the load path, require_relative looks in the current directory and loads a corresponding document.
+
+# What are some ways to iterate through a hash?
+# - Loops with incremental indexes, methods like .each
+
+# When refactoring virus_effects, what stood out to you about the variables, if anything?
+# - I noticed they were instance variables, and therefore had scope throughout all of the class methods.
+
+# What concept did you most solidify in this challenge?
+# - I think I understand refactoring a bit better. I knew that is an area I've lacked good feedback and experience in.
