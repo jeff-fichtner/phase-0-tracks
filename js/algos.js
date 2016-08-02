@@ -3,7 +3,7 @@
 
 // internal methods
 
-function lengthArray(array, lengthArray) {
+function makeArray(array, lengthArray) {
 	for (var i = 0; i < array.length; i++) {
 		lengthArray.push(array[i].length);
 	}
@@ -22,8 +22,8 @@ function chooseLongest(lengthArray, largest) {
 // primary algorithm
 
 function longestPhrase(array) {
-	lengthArray = lengthArray(array, []);
-	index = chooseLongest(lengthArray, 0);
+	var lengthArray = makeArray(array, []);
+	var index = chooseLongest(lengthArray, 0);
 	return array[index];
 }
 
@@ -59,12 +59,12 @@ function isMatch(object1, object2) {
 
 // driver code:
 
-var steven = {name: "Steven", age: 54}
-var tamir = {name: "Tamir", age: 54}
-var roger = {name: "Roger", age: 35}
+// var steven = {name: "Steven", age: 54}
+// var tamir = {name: "Tamir", age: 54}
+// var roger = {name: "Roger", age: 35}
 
-console.log(isMatch(steven,tamir))
-console.log(isMatch(steven,roger))
+// console.log(isMatch(steven,tamir))
+// console.log(isMatch(steven,roger))
 
 
 // pseudocode:
@@ -85,11 +85,32 @@ console.log(isMatch(steven,roger))
 
 // functions:
 
-//
+function randomWord() {
+	var alphabet = "abcdefghijklmnopqrstuvwxyz".split('');
+	var length = Math.floor((Math.random() * 10) + 1);
+	var string = "";
+	for (var i = 0; i < length; i++) {
+		string += (alphabet[Math.floor(Math.random() * alphabet.length)]);
+	}
+	return string
+}
+
+function generateArray(int) {
+	var randomArray = []
+	for (var i = 0; i < int; i++) {
+		randomArray.push(randomWord())
+	}
+	return randomArray
+}
 
 // driver code:
 
-//
+for (var i = 0; i < 10; i++) {
+	var length = Math.floor((Math.random() * 5) + 1)
+	var array = generateArray(length)
+	console.log(array)
+	console.log(longestPhrase(array))
+}
 
 
 // pseudocode:
