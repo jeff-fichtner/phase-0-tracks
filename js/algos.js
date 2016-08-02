@@ -19,10 +19,17 @@
 // 		Update 'match' to true
 // 	End if
 // End loop
+// print result
 
 
 
 // release 2 - generate random test data
 // takes an integer for length, and builds and returns an array of strings of the given length
 
-// pseudocode goes here
+// input: integer
+// loop 'integer' times
+// 	store random number 1-10
+// 	use random number to select random letters
+// 	put them in string
+// 	add to array
+// end loop
