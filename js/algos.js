@@ -1,7 +1,7 @@
 // release 0 - find the longest phrase
 // takes an array of words or phrases and returns the longest word or phrase in the array:
 
-// private methods
+// internal methods
 
 function lengthArray(array, lengthArray) {
 	for (var i = 0; i < array.length; i++) {
@@ -27,9 +27,12 @@ function longestPhrase(array) {
 	return array[index];
 }
 
+// driver code:
 
-console.log(longestPhrase(['hello','goodbye','hi']));
+// console.log(longestPhrase(['hello','goodbye','hi']));
 
+
+// pseudocode:
 
 // iterates through array
 //   stores new array with length of string
@@ -37,10 +40,34 @@ console.log(longestPhrase(['hello','goodbye','hi']));
 //   finds index of largest integer
 // returns object at index of largest integer in original array
 
-
+/* ---------------------------------------------------------------- */
 
 // release 1 - find a key-value match
 // takes two objects and checks to see if the objects share at least one key-value pair
+
+function isMatch(object1, object2) {
+	for (var prop in object1) {
+    if (!object1.hasOwnProperty(prop)) {
+        continue;
+    }
+		if (object1[prop] == object2[prop]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+// driver code:
+
+var steven = {name: "Steven", age: 54}
+var tamir = {name: "Tamir", age: 54}
+var roger = {name: "Roger", age: 35}
+
+console.log(isMatch(steven,tamir))
+console.log(isMatch(steven,roger))
+
+
+// pseudocode:
 
 // Input: two objects
 // Set 'match' variable to false
@@ -51,10 +78,21 @@ console.log(longestPhrase(['hello','goodbye','hi']));
 // End loop
 // print result
 
-
+/* ---------------------------------------------------------------- */
 
 // release 2 - generate random test data
 // takes an integer for length, and builds and returns an array of strings of the given length
+
+// functions:
+
+//
+
+// driver code:
+
+//
+
+
+// pseudocode:
 
 // input: integer
 // loop 'integer' times
