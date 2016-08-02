@@ -1,6 +1,36 @@
 // release 0 - find the longest phrase
 // takes an array of words or phrases and returns the longest word or phrase in the array:
 
+// private methods
+
+function lengthArray(array, lengthArray) {
+	for (var i = 0; i < array.length; i++) {
+		lengthArray.push(array[i].length);
+	}
+	return lengthArray;
+}
+
+function chooseLongest(lengthArray, largest) {
+	for (var i = 0; i <= largest; i++) {
+		if (lengthArray[i] > largest) {
+			var largest = lengthArray[i];
+		}
+	}
+	return lengthArray.indexOf(largest);
+}
+
+// primary algorithm
+
+function longestPhrase(array) {
+	lengthArray = lengthArray(array, []);
+	index = chooseLongest(lengthArray, 0);
+	return array[index];
+}
+
+
+console.log(longestPhrase(['hello','goodbye','hi']));
+
+
 // iterates through array
 //   stores new array with length of string
 // iterates through new array
