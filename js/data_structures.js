@@ -16,3 +16,25 @@ console.log(horseObject)
 //     set key = name array at (count) index, 
 //     value = color array at (count) index
 // end loop
+
+
+function Car(model, capacity, color) {
+  this.model = model;
+  this.capacity = capacity;
+  this.color = color;
+
+  this.horn = function() {
+  console.log("Nosizzz!!");
+  }
+
+}
+
+var Honda = new Car("Honda", 6, "black")
+var Toyota = new Car("Toyota", 4, "blue")
+var bmw = new Car("BMW", 2, "red")
+
+console.log(Honda);
+console.log(Toyota);
+console.log(bmw);
+
+Honda.horn();
