@@ -1,12 +1,12 @@
 # Virus Predictor
 
-# I worked on this challenge [by myself, with: ].
-# We spent [#] hours on this challenge.
+# I worked on this challenge [by myself, with: Sam Parker].
+# We spent [1.5] hours on this challenge.
 
 # EXPLANATION OF require_relative
-# require_relative allows a program to retrieve data from another relevant program
-# require_relative looks in its current directory, and loads it once
-# require loads any data file, but 'relative' looks locally
+#  - require_relative allows a program to retrieve data from another relevant program
+#  - require_relative looks in its current directory, and loads it once
+#  - require loads any data file, but 'relative' looks locally
 
 # links constant 'STATE_DATA'
 require_relative 'state_data'
