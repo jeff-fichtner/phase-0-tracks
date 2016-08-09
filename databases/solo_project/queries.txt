@@ -47,3 +47,28 @@ Delete an item that meets some condition (you can choose a condition that makes 
 
 Input:
 delete from books where id = 3;
+
+------------------------------------
+
+More joins:
+
+Input:
+select books.name, books.copyright, libraries.name from books
+	cross join libraries;
+
+Output:
+East of Eden|1952|Newport Beach
+East of Eden|1952|Costa Mesa
+East of Eden|1952|Huntington Beach
+Moby-Dick|1851|Newport Beach
+Moby-Dick|1851|Costa Mesa
+Moby-Dick|1851|Huntington Beach
+
+Input:
+select libraries.name, books.name from libraries
+	left join books on books.id = libraries.id;
+
+Output:
+Newport Beach|East of Eden
+Costa Mesa|Moby-Dick
+Huntington Beach|
