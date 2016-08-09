@@ -1,0 +1,74 @@
+Display the information in one table (either table is fine).
+
+Input:
+select * from books;
+
+Output:
+1|East of Eden|John Steinbeck|1952|1
+2|Moby-Dick|Herman Melville|1851|2
+3|Trump: The Art of the Deal|Donald Trump|1987|3
+
+------------------------------------
+
+Update an item that meets some condition (you can choose a condition that makes sense).
+
+Input:
+update books set library_id = 2 where id = 3;
+
+------------------------------------
+
+Display the information in both tables using one query.
+
+Input:
+select * from books
+	libraries on libraries.id = books.library_id;
+
+Output:
+1|East of Eden|John Steinbeck|1952|1|1|Newport Beach|09:00:00|20:00:00
+2|Moby-Dick|Herman Melville|1851|2|2|Costa Mesa|07:30:00|17:00:00
+3|Trump: The Art of the Deal|Donald Trump|1987|2|2|Costa Mesa|07:30:00|17:00:00
+
+------------------------------------
+
+Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+
+Input:
+select books.name, books.author, books.copyright, libraries.name from books
+	join libraries on libraries.id = books.library_id;
+
+Output:
+East of Eden|John Steinbeck|1952|Newport Beach
+Moby-Dick|Herman Melville|1851|Costa Mesa
+Trump: The Art of the Deal|Donald Trump|1987|Costa Mesa
+
+------------------------------------
+
+Delete an item that meets some condition (you can choose a condition that makes sense).
+
+Input:
+delete from books where id = 3;
+
+------------------------------------
+
+More joins:
+
+Input:
+select books.name, books.copyright, libraries.name from books
+	cross join libraries;
+
+Output:
+East of Eden|1952|Newport Beach
+East of Eden|1952|Costa Mesa
+East of Eden|1952|Huntington Beach
+Moby-Dick|1851|Newport Beach
+Moby-Dick|1851|Costa Mesa
+Moby-Dick|1851|Huntington Beach
+
+Input:
+select libraries.name, books.name from libraries
+	left join books on books.id = libraries.id;
+
+Output:
+Newport Beach|East of Eden
+Costa Mesa|Moby-Dick
+Huntington Beach|
