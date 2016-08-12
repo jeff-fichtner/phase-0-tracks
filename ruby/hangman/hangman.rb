@@ -1,8 +1,7 @@
 # game class
 
 class Hangman
-	attr_reader :solution, :counter
-	attr_accessor :guess, :guess_array
+	attr_accessor :guess
 
 	def initialize solution
 		@solution = solution.downcase.split('')
@@ -12,15 +11,11 @@ class Hangman
 	end
 
 	def is_game_over
-		if @counter == @solution.length
-			true
-		end
+		@counter == @solution.length
 	end
 
 	def add_guess_count
-		if @solution.index(@guess) == nil && was_guess_repeat == true
-			@counter += 1
-		end
+		@counter += 1 if @solution.index(@guess) == nil && was_guess_repeat != true
 	end
 
 	def update_guess_array
@@ -28,30 +23,22 @@ class Hangman
 	end
 
 	def did_player_win
-		if @solution == create_game_array
-			true
-		end
+		@solution == generate_game_array
 	end
 
-	def create_game_array
+	def generate_game_array
 		game_array = generate_empty_array
 		@guess_array.each do |char|
-			puts "currently iterating: #{char}"
 			if @solution.index(char) != nil
-				puts "#{char} is in solution"
 				if @solution.count(char) > 1
-					puts "#{char} is a duplicate"
-					# duplicate_letter(game_array, char)
-					# update game array
+					duplicate_letter(game_array, char)
 				else
-					puts "#{char} isn't a duplicate"
-		# 			index = @solution.index(char)
-		# 			game_array[index] = @solution[index]
-		# 			game_array
-		# update game array
+					index = @solution.index(char)
+					game_array[index] = @solution[index]
 				end
 			end
 		end
+		game_array
 	end
 
 	def display_remaining_turns
@@ -85,9 +72,7 @@ class Hangman
 	private
 
 	def was_guess_repeat
-		if @guess_array.index(@guess) != nil
-			true
-		end
+		@guess_array.include?(@guess)
 	end
 
 	def generate_empty_array
@@ -108,33 +93,28 @@ class Hangman
 end
 
 
-# test code
-
-hangman = Hangman.new('hello')
-hangman.guess_array = ['e','h','x','l']
-hangman.create_game_array
 
 # driver code
 
-# require 'io/console'
-# puts "Input a word or phrase, and press 'Enter': "
-# solution = STDIN.noecho(&:gets).chomp
-# hangman = Hangman.new(solution)
+require 'io/console'
+puts "Input a word or phrase, and press 'Enter': "
+solution = STDIN.noecho(&:gets).chomp
+hangman = Hangman.new(solution)
 
-# until hangman.is_game_over == true
+until hangman.is_game_over == true
 	
-# 	puts "Guess a letter: "
-# 	hangman.guess = gets.chomp.downcase 
-# 	hangman.add_guess_count
-# 	hangman.update_guess_array
+	puts "Guess a letter: "
+	hangman.guess = gets.chomp.downcase 
+	hangman.add_guess_count
+	hangman.update_guess_array
+	game_array = hangman.generate_game_array
+	puts game_array.join(' ')
 	
-# 	if hangman.did_player_win == true
-# 		break
-# 	else
-# 		game_array = hangman.create_game_array
-# 		p game_array
-# 		hangman.display_remaining_turns
-# 	end
+	if hangman.did_player_win == true
+		break
+	else
+		hangman.display_remaining_turns
+	end
 
-# end
-# hangman.end_of_game
+end
+hangman.end_of_game
