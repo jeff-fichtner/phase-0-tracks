@@ -11,15 +11,11 @@ class Hangman
 	end
 
 	def is_game_over
-		if @counter == @solution.length
-			true
-		end
+		@counter == @solution.length
 	end
 
 	def add_guess_count
-		if @solution.index(@guess) == nil && was_guess_repeat != true
-			@counter += 1
-		end
+		@counter += 1 if @solution.index(@guess) == nil && was_guess_repeat != true
 	end
 
 	def update_guess_array
@@ -27,10 +23,7 @@ class Hangman
 	end
 
 	def did_player_win
-		game_array = generate_game_array
-		if @solution == game_array
-			true
-		end
+		@solution == generate_game_array
 	end
 
 	def generate_game_array
@@ -50,7 +43,9 @@ class Hangman
 
 	def display_remaining_turns
 		turns_left = @solution.length - @counter
-		if turns_left == 1
+		if is_game_over == true
+			# shh, the end is nigh!
+		elsif turns_left == 1
 			puts "You have #{turns_left} turn left."
 		else
 			puts "You have #{turns_left} turns left."
@@ -77,9 +72,7 @@ class Hangman
 	private
 
 	def was_guess_repeat
-		if @guess_array.index(@guess) != nil
-			true
-		end
+		@guess_array.include?(@guess)
 	end
 
 	def generate_empty_array
@@ -112,7 +105,7 @@ until hangman.is_game_over == true
 	
 	puts "Guess a letter: "
 	hangman.guess = gets.chomp.downcase 
-	p hangman.add_guess_count
+	hangman.add_guess_count
 	hangman.update_guess_array
 	game_array = hangman.generate_game_array
 	puts game_array.join(' ')
