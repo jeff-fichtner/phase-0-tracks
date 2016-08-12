@@ -27,13 +27,13 @@ class Hangman
 	end
 
 	def did_player_win
-		game_array = create_game_array
+		game_array = generate_game_array
 		if @solution == game_array
 			true
 		end
 	end
 
-	def create_game_array
+	def generate_game_array
 		game_array = generate_empty_array
 		@guess_array.each do |char|
 			if @solution.index(char) != nil
@@ -112,9 +112,9 @@ until hangman.is_game_over == true
 	
 	puts "Guess a letter: "
 	hangman.guess = gets.chomp.downcase 
-	hangman.add_guess_count
+	p hangman.add_guess_count
 	hangman.update_guess_array
-	game_array = hangman.create_game_array
+	game_array = hangman.generate_game_array
 	puts game_array.join(' ')
 	
 	if hangman.did_player_win == true
