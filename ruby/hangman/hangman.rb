@@ -5,21 +5,21 @@ class Hangman
 
 	def initialize solution
 		@solution = solution.downcase.split('')
-		# @counter = 0
+		@counter = 0
 		@guess = String.new
 		@guess_array = Array.new
 	end
 
 	def is_game_over
-		# if @counter == @solution.length
-		# 	true
-		# end
+		if @counter == @solution.length
+			true
+		end
 	end
 
 	def add_guess_count
-		# if @solution.index(@guess) == nil && was_guess_repeat == true
-		# 	@counter += 1
-		# end
+		if @solution.index(@guess) == nil && was_guess_repeat != true
+			@counter += 1
+		end
 	end
 
 	def update_guess_array
@@ -77,9 +77,9 @@ class Hangman
 	private
 
 	def was_guess_repeat
-		# if @guess_array.index(@guess) != nil
-		# 	true
-		# end
+		if @guess_array.index(@guess) != nil
+			true
+		end
 	end
 
 	def generate_empty_array
