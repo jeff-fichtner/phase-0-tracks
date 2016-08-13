@@ -9,8 +9,8 @@
 
 # database
 
-require 'sqlite3'
-require 'date'
+# require 'sqlite3'
+# require 'date'
 
 # table:
 # 	int primary key
@@ -21,16 +21,40 @@ require 'date'
 
 
 # class:
+class Password
+
+# password generator
+	def generate length=14
+		characters = ('0'..'9').to_a + ('A'..'Z').to_a + ('a'..'z').to_a
+		password = String.new
+		length.times do
+			password = password + characters.sample
+		end
+		number  = /[[:digit:]]/.match(password)
+		uppercase = /[[:upper:]]/.match(password)
+		lowercase = /[[:lower:]]/.match(password)
+		# if nil, redo
+	end
+
 
 # create table
+
 # view one entry
+
 # view every entry
+
 # verify date of passwords
+
 # alert old passwords
 
-
-
+end
 # driver code
+
+password = Password.new
+password.generate 
+
+
+
 
 # begin driver loop
 
