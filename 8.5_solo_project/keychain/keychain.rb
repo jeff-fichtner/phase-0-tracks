@@ -9,19 +9,29 @@
 
 # database
 
-# require 'sqlite3'
-# require 'date'
+require 'sqlite3'
+require 'date'
 
-# table:
-# 	int primary key
-# 	website VARCHAR
-# 	password VARCHAR
-# 	date_init DATE
+def new_database
+	db = SQLite3::Database.new("passwords.db")
+	db.results_as_hash = true
+	db
+end
 
+def new_table indentifier
+	create_table_cmd = <<-SQL
+	  CREATE TABLE IF NOT EXISTS ('passwords_' + indentifier) (
+	    id INTEGER PRIMARY KEY,
+	    website VARCHAR(255),
+	    password VARCHAR(255),
+	    init_date DATE
+	  	)
+	SQL
+end
 
-
-# class:
-class Password
+def create_key db, website, password, init_date
+  db.execute("INSERT INTO <database> (website, password, init_date) VALUES (?, ?, ?)", [website, password, init_date])
+end
 
 # password generator
 	def generate length=14
@@ -42,16 +52,13 @@ class Password
 # view every entry
 
 # verify date of passwords
-
 # alert old passwords
 
-end
 
 
 # driver code
 
-password = Password.new
-p password.generate
+p generate(9)
 
 
 
