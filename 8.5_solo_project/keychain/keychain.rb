@@ -30,17 +30,15 @@ class Password
 		length.times do
 			password = password + characters.sample
 		end
-		number  = /[[:digit:]]/.match(password)
-		uppercase = /[[:upper:]]/.match(password)
-		lowercase = /[[:lower:]]/.match(password)
-		# if nil, redo
+		# remake password if it doesn't contain all three types of characters
+		if (/[[:digit:]]/.match(password) == nil || /[[:upper:]]/.match(password) == nil || /[[:lower:]]/.match(password) == nil)
+			password = generate
+		end
+		password
 	end
 
-
 # create table
-
 # view one entry
-
 # view every entry
 
 # verify date of passwords
@@ -48,10 +46,14 @@ class Password
 # alert old passwords
 
 end
+
+
 # driver code
 
 password = Password.new
-password.generate 
+p password.generate
+
+
 
 
 
