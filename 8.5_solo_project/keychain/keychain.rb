@@ -24,7 +24,7 @@ class Keychain
 
 
 	# create table
-	def new_table indentifier
+	def new_table
 		create_table_cmd = <<-SQL
 		  CREATE TABLE IF NOT EXISTS passwords (
 		    id INTEGER PRIMARY KEY,
@@ -92,13 +92,52 @@ end
 
 # driver code
 
+puts
+puts "Welcome to the keychain."
+puts
+
 keychain = Keychain.new
 keychain.new_table
-if keychain.verify_date != nil
+
+# if keychain.verify_date != nil
 	# for each id:
 			# prompt a new password
 			# overwrite old password
 
+answer_to_life = 42
+while answer_to_life == 42
+
+	puts
+	puts "To add an entry, type (1).\n" +
+			 "To update an entry, type (2).\n" +
+			 "To view all entries, type (3).\n" +
+			 "To quit, type (q)."
+	puts
+
+	input = gets.chomp
+	break if input == 'q'
+
+	if input.to_i == 1
+		# add entry
+		p 'option 1'
+
+	elsif input.to_i == 2
+		# update entry
+		p 'option 2'
+
+	elsif input.to_i == 3
+		# view all entries
+		p 'option 3'
+
+	end
+
+
+end # while
+p 'end of program message'
+
+
+
+# pseudocode
 
 # create database
 # create table
@@ -107,21 +146,22 @@ if keychain.verify_date != nil
 		# if 'n', stay silent
 
 # begin driver loop
-	# 1- view, 2- add, 3- quit
-		
-		# 1- view
-			# display all id's/websites/passwords
+	# 1- add, 2- update, 3- view, 4- quit
 
-		# 2- add
+		# 1- add
 			# prompt website
 			# generate?
 				# yes - generate password
 				# no - prompt for password
+				# store with date
+				# display individual entry
 
-			# store with date
-			# display individual entry
-
-		# 3- quit
+		# 2- update
+		
+		# 3- view
+			# display all id's/websites/passwords
+			
+		# 4- quit
 			# break
 
 # end
