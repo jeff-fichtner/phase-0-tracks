@@ -50,20 +50,7 @@ class Keychain
 	end
 
 
-	# password generator
-	def generate length=14
-		characters = ('0'..'9').to_a + ('A'..'Z').to_a + ('a'..'z').to_a
-		password = String.new
-		length.times do
-			password = password + characters.sample
-		end
-		# remake password if it doesn't contain all three types of characters
-		if (/[[:digit:]]/.match(password) == nil || /[[:upper:]]/.match(password) == nil || /[[:lower:]]/.match(password) == nil)
-			password = generate
-		end
-		password
-	end
-
+	
 
 	# view one entry (with id)
 	def view_entry_id id
@@ -120,6 +107,23 @@ class Keychain
 
 
 	private
+
+	# password generator
+	def generate length=14
+		characters = ('0'..'9').to_a + ('A'..'Z').to_a + ('a'..'z').to_a
+		password = String.new
+			
+		length.times do
+			password = password + characters.sample
+		end
+			
+		# remake password if it doesn't contain all three types of characters
+		if (/[[:digit:]]/.match(password) == nil || /[[:upper:]]/.match(password) == nil || /[[:lower:]]/.match(password) == nil)
+			password = generate
+		end
+
+		password
+	end
 
 
 	# display hash
