@@ -70,7 +70,7 @@ class Keychain
 		array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
 			
 			i = 0
-			until i == (array_of_hashes.length - 1)
+			until i == (array_of_hashes.length)
 				puts display(array_of_hashes[i])
 				i += 1
 			end
