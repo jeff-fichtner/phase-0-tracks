@@ -1,12 +1,5 @@
 # password generator and database
 
-
-# verify user
-# display all passwords
-# generate password
-# store password with username/other token
-# prompt to change password every three months
-
 # database
 
 require 'sqlite3'
@@ -129,7 +122,7 @@ while answer_to_life == 42
 	puts "------------------------------"
 
 	input = gets.chomp
-	break if input == 'q'
+	answer_to_life += 1 if input == 'q'
 
 	if input.to_i == 1
 		puts "What is the name of the website?"
@@ -180,6 +173,15 @@ p 'end of program message'
 
 # pseudocode
 
+
+# verify user
+# display all passwords
+# generate password
+# store password with username/other token
+# prompt to change password every three months
+
+# pseudo driver:
+
 # create database
 # create table
 # run 3-month check
@@ -205,4 +207,4 @@ p 'end of program message'
 		# 4- quit
 			# break
 
-# end
+# end loop
