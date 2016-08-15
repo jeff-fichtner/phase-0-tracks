@@ -82,7 +82,6 @@ class Keychain
 	def verify_date
 		id_array = Array.new
 		array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
-		p array_of_hashes[0]
 			i = 0
 			until i == (array_of_hashes.length)
 				date_in_3_months = Date.parse(array_of_hashes[i]['init_date']) + 90
@@ -128,8 +127,15 @@ puts
 keychain = Keychain.new
 keychain.new_table
 
-# verify date driver code goes here
+if keychain.verify_date.empty? == false
+	# run program - create arrays with id's
+	# for each id
+		# prompt password
+		# update row, with new date
+		# print result
+end
 
+# begin loop
 answer_to_life = 42
 while answer_to_life == 42
 
