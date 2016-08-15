@@ -68,18 +68,29 @@ class Keychain
 	# view every entry
 	def view_all
 		array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
-		i = 0
-		until i == (array_of_hashes.length - 1)
-			puts display(array_of_hashes[i])
-			i += 1
-		end
+			
+			i = 0
+			until i == (array_of_hashes.length - 1)
+				puts display(array_of_hashes[i])
+				i += 1
+			end
+
 	end
 
 
 	# verify date of passwords
 	def verify_date
-		id_array = Array.new
-		# iterate through each row
+		# id_array = Array.new
+		# array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
+		
+		# 	i = 0
+		# 	until i == (array_of_hashes.length - 1)
+		# 		date = array_of_hashes[i]['init_date']
+		# 		new_date = Date.parse(date)
+		# 		id_array << new_date
+		# 		i += 1
+		# 	end
+
 			# gather the date, add 90 days
 
 				# if on or before today's date
@@ -87,13 +98,13 @@ class Keychain
 				# end if
 		# end iteration
 
-		# return array of id's
+		# id_array
 	end
 
 
 	# update entry
 	def update_entry id, new_password
-		date = Time.new.strftime("%Y%m%d")
+		date = Time.new.strftime("%Y-%m-%d")
 		$PASSWORDS.execute("UPDATE passwords SET password=?, init_date=? WHERE id=?;", [new_password, date, id])
 	end
 
@@ -120,10 +131,7 @@ puts
 keychain = Keychain.new
 keychain.new_table
 
-# if keychain.verify_date != nil
-	# for each id:
-			# prompt a new password
-			# overwrite old password
+# driver code for verify date feature *unfinished*
 
 answer_to_life = 42
 while answer_to_life == 42
@@ -151,7 +159,7 @@ while answer_to_life == 42
 				password = gets.chomp
 			end
 		
-		date = Time.new.strftime("%Y%m%d")
+		date = Time.new.strftime("%Y-%m-%d")
 		keychain.create_key(website, password, date)
 		puts
 		puts keychain.view_entry_website(website)
@@ -187,10 +195,13 @@ while answer_to_life == 42
 	end
 
 
-end # while
+end
+
 puts
 puts "See you later!"
 puts
+
+
 
 
 
