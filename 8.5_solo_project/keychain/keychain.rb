@@ -78,27 +78,24 @@ class Keychain
 	end
 
 
-	# verify date of passwords
+	# verify date of passwords - id's in array need updating
 	def verify_date
-		# id_array = Array.new
-		# array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
-		
-		# 	i = 0
-		# 	until i == (array_of_hashes.length - 1)
-		# 		date = array_of_hashes[i]['init_date']
-		# 		new_date = Date.parse(date)
-		# 		id_array << new_date
-		# 		i += 1
-		# 	end
+		id_array = Array.new
+		array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
+		p array_of_hashes[0]
+			i = 0
+			until i == (array_of_hashes.length)
+				date_in_3_months = Date.parse(array_of_hashes[i]['init_date']) + 90
+				today = Time.new.to_date
+				diff = date_in_3_months - today
+					
+					if diff <= 0
+						id_array << array_of_hashes[i]['id']
+					end
 
-			# gather the date, add 90 days
-
-				# if on or before today's date
-					# add id to array
-				# end if
-		# end iteration
-
-		# id_array
+				i += 1
+			end
+		id_array
 	end
 
 
@@ -131,7 +128,7 @@ puts
 keychain = Keychain.new
 keychain.new_table
 
-# driver code for verify date feature *unfinished*
+# verify date driver code goes here
 
 answer_to_life = 42
 while answer_to_life == 42
