@@ -1,12 +1,5 @@
 # password generator and database
 
-
-# verify user
-# display all passwords
-# generate password
-# store password with username/other token
-# prompt to change password every three months
-
 # database
 
 require 'sqlite3'
@@ -31,7 +24,7 @@ class Keychain
 		    website VARCHAR(255),
 		    password VARCHAR(255),
 		    init_date DATE
-		  	)
+		  	);
 		SQL
 		$PASSWORDS.execute(create_table_cmd)
 	end
@@ -39,7 +32,7 @@ class Keychain
 
 	# create key
 	def create_key website, password, init_date
-	  $PASSWORDS.execute("INSERT INTO passwords (website, password, init_date) VALUES (?, ?, ?)", [website, password, init_date])
+	  $PASSWORDS.execute("INSERT INTO passwords (website, password, init_date) VALUES (?, ?, ?);", [website, password, init_date])
 	end
 
 
@@ -58,16 +51,23 @@ class Keychain
 	end
 
 
-	# view one entry
-	def view_one_entry id
-		hash = $PASSWORDS.execute("SELECT * FROM passwords WHERE id=?", [id])
+	# view one entry (with id)
+	def view_entry_id id
+		hash = $PASSWORDS.execute("SELECT * FROM passwords WHERE id=?;", [id])
+		# display hash better
+	end
+
+
+	# view one entry (with website name)
+	def view_entry_website website
+		hash = $PASSWORDS.execute("SELECT * FROM passwords WHERE website=?;", [website])
 		# display hash better
 	end
 
 
 	# view every entry
 	def view_all
-		hash = $PASSWORDS.execute("SELECT * FROM passwords")
+		hash = $PASSWORDS.execute("SELECT * FROM passwords;")
 		# display hash better
 	end
 
@@ -84,6 +84,13 @@ class Keychain
 		# end iteration
 
 		# return array of id's
+	end
+
+
+	# update entry
+	def update_entry id, new_password
+		date = Time.new.strftime("%Y%m%d")
+		$PASSWORDS.execute("UPDATE passwords SET password=?, init_date=? WHERE id=?;", [new_password, date, id])
 	end
 
 end
@@ -107,27 +114,54 @@ keychain.new_table
 answer_to_life = 42
 while answer_to_life == 42
 
-	puts
+	puts "------------------------------"
 	puts "To add an entry, type (1).\n" +
 			 "To update an entry, type (2).\n" +
 			 "To view all entries, type (3).\n" +
 			 "To quit, type (q)."
-	puts
+	puts "------------------------------"
 
 	input = gets.chomp
-	break if input == 'q'
+	answer_to_life += 1 if input == 'q'
 
 	if input.to_i == 1
-		# add entry
-		p 'option 1'
+		puts "What is the name of the website?"
+		website = gets.chomp
+		puts "Would you like to generate a password? (yes/no)"
+		response = gets.chomp
+		
+			if response == 'yes'
+				password = keychain.generate
+			elsif response == 'no'
+				puts "Please enter a password."
+				password = gets.chomp
+			end
+		
+		date = Time.new.strftime("%Y%m%d")
+		keychain.create_key(website, password, date)
+		p keychain.view_entry_website(website)
+
 
 	elsif input.to_i == 2
-		# update entry
-		p 'option 2'
+		p keychain.view_all
+		puts "Which id would you like to update?"
+		id = gets.chomp.to_i
+		puts "Would you like to generate a password? (yes/no)"
+		response = gets.chomp
+		
+			if response == 'yes'
+				password = keychain.generate
+			elsif response == 'no'
+				puts "Please enter a password."
+				password = gets.chomp
+			end
+
+		keychain.update_entry(id, password)
+		p keychain.view_entry_id(id)
+
 
 	elsif input.to_i == 3
-		# view all entries
-		p 'option 3'
+		p keychain.view_all
 
 	end
 
@@ -138,6 +172,15 @@ p 'end of program message'
 
 
 # pseudocode
+
+
+# verify user
+# display all passwords
+# generate password
+# store password with username/other token
+# prompt to change password every three months
+
+# pseudo driver:
 
 # create database
 # create table
@@ -164,4 +207,4 @@ p 'end of program message'
 		# 4- quit
 			# break
 
-# end
+# end loop
