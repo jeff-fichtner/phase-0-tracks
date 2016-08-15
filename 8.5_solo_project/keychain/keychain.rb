@@ -36,6 +36,20 @@ class Keychain
 	end
 
 
+	# ask to generate password
+	def prompt_password
+		puts "Would you like to generate a password? (yes/no)"
+		response = gets.chomp
+		
+			if response == 'yes'
+				generate
+			elsif response == 'no'
+				puts "Please enter a password."
+				gets.chomp
+			end
+	end
+
+
 	# password generator
 	def generate length=14
 		characters = ('0'..'9').to_a + ('A'..'Z').to_a + ('a'..'z').to_a
@@ -128,11 +142,18 @@ keychain = Keychain.new
 keychain.new_table
 
 if keychain.verify_date.empty? == false
-	# run program - create arrays with id's
-	# for each id
-		# prompt password
-		# update row, with new date
-		# print result
+	id_array = keychain.verify_date
+	id_array.each do |id|
+		puts "The following password is out of date:"
+		puts
+		puts keychain.view_entry_id(id)
+		puts
+		password = keychain.prompt_password
+		keychain.update_entry(id, password)
+		puts
+		puts keychain.view_entry_id(id)
+		puts
+	end
 end
 
 # begin loop
@@ -153,15 +174,7 @@ while answer_to_life == 42
 		puts "What is the name of the website?"
 		website = gets.chomp
 		puts "Would you like to generate a password? (yes/no)"
-		response = gets.chomp
-		
-			if response == 'yes'
-				password = keychain.generate
-			elsif response == 'no'
-				puts "Please enter a password."
-				password = gets.chomp
-			end
-		
+		password = keychain.prompt_password
 		date = Time.new.strftime("%Y-%m-%d")
 		keychain.create_key(website, password, date)
 		puts
@@ -173,16 +186,7 @@ while answer_to_life == 42
 		p keychain.view_all
 		puts "Which id would you like to update?"
 		id = gets.chomp.to_i
-		puts "Would you like to generate a password? (yes/no)"
-		response = gets.chomp
-		
-			if response == 'yes'
-				password = keychain.generate
-			elsif response == 'no'
-				puts "Please enter a password."
-				password = gets.chomp
-			end
-
+		password = keychain.prompt_password
 		keychain.update_entry(id, password)
 		puts
 		puts keychain.view_entry_id(id)
