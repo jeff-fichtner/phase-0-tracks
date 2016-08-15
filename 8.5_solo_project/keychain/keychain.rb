@@ -1,9 +1,9 @@
 # password generator and database
 
-# database
 
 require 'sqlite3'
 require 'date'
+
 
 class Keychain
 
@@ -49,9 +49,7 @@ class Keychain
 			end
 	end
 
-
 	
-
 	# view one entry (with id)
 	def view_entry_id id
 		hash = $PASSWORDS.execute("SELECT * FROM passwords WHERE id=?;", [id])
@@ -83,6 +81,7 @@ class Keychain
 	def verify_date
 		id_array = Array.new
 		array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
+			
 			i = 0
 			until i == (array_of_hashes.length)
 				date_in_3_months = Date.parse(array_of_hashes[i]['init_date']) + 90
@@ -95,6 +94,7 @@ class Keychain
 
 				i += 1
 			end
+			
 		id_array
 	end
 
