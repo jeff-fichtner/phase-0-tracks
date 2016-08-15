@@ -54,21 +54,25 @@ class Keychain
 	# view one entry (with id)
 	def view_entry_id id
 		hash = $PASSWORDS.execute("SELECT * FROM passwords WHERE id=?;", [id])
-		# display hash better
+		display(hash[0])
 	end
 
 
 	# view one entry (with website name)
 	def view_entry_website website
 		hash = $PASSWORDS.execute("SELECT * FROM passwords WHERE website=?;", [website])
-		# display hash better
+		display(hash[0])
 	end
 
 
 	# view every entry
 	def view_all
-		hash = $PASSWORDS.execute("SELECT * FROM passwords;")
-		# display hash better
+		array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
+		i = 0
+		until i == (array_of_hashes.length - 1)
+			puts display(array_of_hashes[i])
+			i += 1
+		end
 	end
 
 
@@ -92,6 +96,16 @@ class Keychain
 		date = Time.new.strftime("%Y%m%d")
 		$PASSWORDS.execute("UPDATE passwords SET password=?, init_date=? WHERE id=?;", [new_password, date, id])
 	end
+
+
+	private
+
+
+	# display hash
+	def display hash
+		"website: #{hash['website']} | password: #{hash['password']}"
+	end
+
 
 end
 
@@ -139,7 +153,9 @@ while answer_to_life == 42
 		
 		date = Time.new.strftime("%Y%m%d")
 		keychain.create_key(website, password, date)
-		p keychain.view_entry_website(website)
+		puts
+		puts keychain.view_entry_website(website)
+		puts
 
 
 	elsif input.to_i == 2
@@ -157,17 +173,24 @@ while answer_to_life == 42
 			end
 
 		keychain.update_entry(id, password)
-		p keychain.view_entry_id(id)
+		puts
+		puts keychain.view_entry_id(id)
+		puts
 
 
 	elsif input.to_i == 3
-		p keychain.view_all
+		puts "------------------------------"
+		puts
+		keychain.view_all
+		puts
 
 	end
 
 
 end # while
-p 'end of program message'
+puts
+puts "See you later!"
+puts
 
 
 
