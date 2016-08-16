@@ -7,9 +7,9 @@ What are some of the key design philosophies of the Linux operating system?
 
 In your own words, what is a VPS (virtual private server)? What, according to your research, are the advantages of using a VPS?
 
->A VPS hosts an entire os on a shared dedicated physical server. So, while it doesn't technically exist in its own physical space, it operates as if it is, and provides superuser access to the owner. *finish*
+>A VPS hosts an entire os on a shared dedicated physical server. So, while it doesn't technically exist in its own physical space, it operates as if it is, and provides superuser access to the owner. This allows us, for very little money, to create a virtual computer and allow it to interact with the internet.
 
 
-Optional bonus question: Why is it considered a bad idea to run programs as the root user on a Linux system?
+Why is it considered a bad idea to run programs as the root user on a Linux system?
 
->*finish*
+>By running programs on a separate user, the programs will not have access to the entire os, and will require permission to modify anything of importance.
