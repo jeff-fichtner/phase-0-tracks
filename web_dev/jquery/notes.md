@@ -57,6 +57,10 @@ To use:
 
 </script>
 
+[examples](http://www.w3schools.com/jquery/jquery_examples.asp)
+
+- Ajax is about getting and receiving more data
+
 
 
 ### After
