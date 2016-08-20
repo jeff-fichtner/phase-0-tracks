@@ -25,3 +25,18 @@ post '/students' do
 end
 
 # add static resources
+
+
+# add a route to search.erb
+get '/search/new' do
+	erb :new_search
+end
+
+# return students who match the search
+post '/search' do
+	@students = db.execute("SELECT * FROM students")
+	@letter = params['first_letter']
+	erb :search_results
+end
+
+
