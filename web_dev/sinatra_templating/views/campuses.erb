@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Campuses</title>
+</head>
+<body>
+<h1>Add a campus</h1>
+	
+	<form action="/campus" method="POST">
+		<input type="text" name="campus_name" placeholder="Campus name goes here"></input>
+		<input type="text" name="number_of_students" placeholder="Number of enrolled students"></input>
+		<button type="submit">Submit</button>
+	</form>
+
+	<ul>
+		<% @campuses.each do |campus| %>
+      <li>"<%= campus['campus_name'] %>" has <%= campus['number_of_students'] %> students.</li>
+    <% end %>
+	</ul>
+	<a href="/">Home</a>
+</body>
+</html>

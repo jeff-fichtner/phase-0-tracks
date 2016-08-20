@@ -7,6 +7,8 @@ set :public_folder, File.dirname(__FILE__) + '/static'
 db = SQLite3::Database.new("students.db")
 db.results_as_hash = true
 
+db.execute("CREATE TABLE IF NOT EXISTS campuses ('id' integer primary key, 'campus_name' varchar(255), 'number_of_students' int)")
+
 # show students on the home page
 get '/' do
   @students = db.execute("SELECT * FROM students")
@@ -24,8 +26,8 @@ post '/students' do
   redirect '/'
 end
 
-# add static resources
 
+# 9.5
 
 # add a route to search.erb
 get '/search/new' do
@@ -40,3 +42,13 @@ post '/search' do
 end
 
 
+# add campus form
+get '/campuses' do
+	@campuses = db.execute("SELECT * FROM campuses")
+	erb :campuses
+end
+
+post '/campus' do
+	db.execute("INSERT INTO campuses (campus_name, number_of_students) VALUES (?,?)", [params['campus_name'], params['number_of_students'].to_i])
+	redirect '/campuses'
+end

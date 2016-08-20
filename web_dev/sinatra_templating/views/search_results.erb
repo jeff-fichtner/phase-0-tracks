@@ -8,10 +8,10 @@
 	<ul>
 		<% @students.each do |student| %>
 			<% if student['name'][0] == @letter %>
-      			<li><%= student['name'] %>, <%= student['age'] %></li>
-      		<% end %>
-    	<% end %>
+      	<li><%= student['name'] %>, <%= student['age'] %></li>
+      <% end %>
+    <% end %>
 	</ul>
-
+	<a href="/">Home</a>
 </body>
 </html>
