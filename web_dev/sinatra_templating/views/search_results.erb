@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Results</title>
+</head>
+<body>
+	<h3>Students whose names starts with <%= @letter %>.</h3>
+	<ul>
+		<% @students.each do |student| %>
+			<% if student['name'][0] == @letter %>
+      	<li><%= student['name'] %>, <%= student['age'] %></li>
+      <% end %>
+    <% end %>
+	</ul>
+	<a href="/">Home</a>
+</body>
+</html>
