@@ -49,18 +49,16 @@ get '/contact' do
 	"123 Four Lane, Shutter Island, SH 10001"
 end
 
-get '/great_job' do
-	"Hello world"
-	# name = params[:name]
-	# puts name
-	# if name
-	# 	"Good job, #{name}!"
-	# else
-	# 	"Good job!"
-	# end
+get '/great_job/' do
+	name = params[:name]
+	if name.empty? == false
+		"Good job, #{name}!"
+	else
+		"Good job!"
+	end
 end
 
-# get '/:num1/:num2' do
-# 	params[:num1]
-# 	params[:num2]
-# end
+get '/:num1/:num2' do
+	result = params[:num1].to_i + params[:num2].to_i
+	"#{params[:num1]} and #{params[:num2]} makes #{result}."
+end
