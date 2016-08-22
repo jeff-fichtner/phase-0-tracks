@@ -58,7 +58,7 @@ get '/great_job/' do
 	end
 end
 
-# get '/:num1/:num2' do
-# 	params[:num1]
-# 	params[:num2]
-# end
+get '/:num1/:num2' do
+	result = params[:num1].to_i + params[:num2].to_i
+	"#{params[:num1]} and #{params[:num2]} makes #{result}."
+end
