@@ -128,7 +128,7 @@ class Keychain
 
 	# display hash
 	def display hash
-		"website: #{hash['website']} | password: #{hash['password']}"
+		"#{hash['id']} | website: #{hash['website']} | password: #{hash['password']}"
 	end
 
 
@@ -161,8 +161,7 @@ if keychain.verify_date.empty? == false
 end
 
 # begin loop
-answer_to_life = 42
-while answer_to_life == 42
+loop do
 
 	puts "------------------------------"
 	puts "To add an entry, type (1).\n" +
@@ -172,7 +171,7 @@ while answer_to_life == 42
 	puts "------------------------------"
 
 	input = gets.chomp
-	answer_to_life += 1 if input == 'q'
+	break if input == 'q'
 
 	if input.to_i == 1
 		puts "What is the name of the website?"
