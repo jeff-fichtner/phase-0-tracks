@@ -1,9 +1,9 @@
 # password generator and database
 
-# database
 
 require 'sqlite3'
 require 'date'
+
 
 class Keychain
 
@@ -36,21 +36,20 @@ class Keychain
 	end
 
 
-	# password generator
-	def generate length=14
-		characters = ('0'..'9').to_a + ('A'..'Z').to_a + ('a'..'z').to_a
-		password = String.new
-		length.times do
-			password = password + characters.sample
-		end
-		# remake password if it doesn't contain all three types of characters
-		if (/[[:digit:]]/.match(password) == nil || /[[:upper:]]/.match(password) == nil || /[[:lower:]]/.match(password) == nil)
-			password = generate
-		end
-		password
+	# ask to generate password
+	def prompt_password
+		puts "Would you like to generate a password? (yes/no)"
+		response = gets.chomp
+		
+			if response == 'yes'
+				generate
+			elsif response == 'no'
+				puts "Please enter a password."
+				gets.chomp
+			end
 	end
 
-
+	
 	# view one entry (with id)
 	def view_entry_id id
 		hash = $PASSWORDS.execute("SELECT * FROM passwords WHERE id=?;", [id])
@@ -82,7 +81,7 @@ class Keychain
 	def verify_date
 		id_array = Array.new
 		array_of_hashes = $PASSWORDS.execute("SELECT * FROM passwords;")
-		p array_of_hashes[0]
+			
 			i = 0
 			until i == (array_of_hashes.length)
 				date_in_3_months = Date.parse(array_of_hashes[i]['init_date']) + 90
@@ -95,6 +94,7 @@ class Keychain
 
 				i += 1
 			end
+			
 		id_array
 	end
 
@@ -108,10 +108,27 @@ class Keychain
 
 	private
 
+	# password generator
+	def generate length=14
+		characters = ('0'..'9').to_a + ('A'..'Z').to_a + ('a'..'z').to_a
+		password = String.new
+			
+		length.times do
+			password = password + characters.sample
+		end
+			
+		# remake password if it doesn't contain all three types of characters
+		if (/[[:digit:]]/.match(password) == nil || /[[:upper:]]/.match(password) == nil || /[[:lower:]]/.match(password) == nil)
+			password = generate
+		end
+
+		password
+	end
+
 
 	# display hash
 	def display hash
-		"website: #{hash['website']} | password: #{hash['password']}"
+		"#{hash['id']} | website: #{hash['website']} | password: #{hash['password']}"
 	end
 
 
@@ -128,10 +145,23 @@ puts
 keychain = Keychain.new
 keychain.new_table
 
-# verify date driver code goes here
+if keychain.verify_date.empty? == false
+	id_array = keychain.verify_date
+	id_array.each do |id|
+		puts "The following password is out of date:"
+		puts
+		puts keychain.view_entry_id(id)
+		puts
+		password = keychain.prompt_password
+		keychain.update_entry(id, password)
+		puts
+		puts keychain.view_entry_id(id)
+		puts
+	end
+end
 
-answer_to_life = 42
-while answer_to_life == 42
+# begin loop
+loop do
 
 	puts "------------------------------"
 	puts "To add an entry, type (1).\n" +
@@ -141,21 +171,13 @@ while answer_to_life == 42
 	puts "------------------------------"
 
 	input = gets.chomp
-	answer_to_life += 1 if input == 'q'
+	break if input == 'q'
 
 	if input.to_i == 1
 		puts "What is the name of the website?"
 		website = gets.chomp
 		puts "Would you like to generate a password? (yes/no)"
-		response = gets.chomp
-		
-			if response == 'yes'
-				password = keychain.generate
-			elsif response == 'no'
-				puts "Please enter a password."
-				password = gets.chomp
-			end
-		
+		password = keychain.prompt_password
 		date = Time.new.strftime("%Y-%m-%d")
 		keychain.create_key(website, password, date)
 		puts
@@ -167,16 +189,7 @@ while answer_to_life == 42
 		p keychain.view_all
 		puts "Which id would you like to update?"
 		id = gets.chomp.to_i
-		puts "Would you like to generate a password? (yes/no)"
-		response = gets.chomp
-		
-			if response == 'yes'
-				password = keychain.generate
-			elsif response == 'no'
-				puts "Please enter a password."
-				password = gets.chomp
-			end
-
+		password = keychain.prompt_password
 		keychain.update_entry(id, password)
 		puts
 		puts keychain.view_entry_id(id)
